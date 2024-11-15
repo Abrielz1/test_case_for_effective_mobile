@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpServerErrorException;
-import ru.vitasoft.testcase.exception.exceptions.AlreadyExistsException;
-import ru.vitasoft.testcase.exception.exceptions.BadRequestException;
-import ru.vitasoft.testcase.exception.exceptions.ObjectNotFoundException;
-import ru.vitasoft.testcase.exception.exceptions.UnsupportedStateException;
+import ru.effective_mobile.test_case.exception.exceptions.AlreadyExistsException;
+import ru.effective_mobile.test_case.exception.exceptions.BadRequestException;
+import ru.effective_mobile.test_case.exception.exceptions.ObjectNotFoundException;
+import ru.effective_mobile.test_case.exception.exceptions.UnsupportedStateException;
 
 @Slf4j
 @RestControllerAdvice
