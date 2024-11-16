@@ -1,7 +1,9 @@
 package ru.effective_mobile.test_case.utils.mappers;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.exception.exceptions.UnsupportedStateException;
+import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseDto;
 
 @Slf4j
 public class UserMapper {
@@ -12,5 +14,8 @@ public class UserMapper {
         throw new UnsupportedStateException("Utility Class!");
     }
 
-    // todo mapper logic awaits
+    public static UserResponseDto toUserResponseDto(User author) {
+
+        return new UserResponseDto(author.getEmail());
+    }
 }

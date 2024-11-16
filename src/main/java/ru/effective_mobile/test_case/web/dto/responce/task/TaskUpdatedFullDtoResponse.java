@@ -14,7 +14,7 @@ public record TaskUpdatedFullDtoResponse(
 
                                         TaskStatus status,
 
-                                        String author,
+                                        User author,
 
                                         User assignee) {
 }

@@ -6,5 +6,5 @@ import ru.effective_mobile.test_case.app.model.enums.TaskStatus;
 
 public record TaskUpdatedDtoRequest(TaskStatus updateStatus,
                                     Priorities priorityStatus,
-                                    User assignee) {
+                                    String assigneeEmail) {
 }

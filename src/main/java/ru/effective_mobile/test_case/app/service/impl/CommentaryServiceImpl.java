@@ -12,7 +12,6 @@ import ru.effective_mobile.test_case.web.dto.request.post.CommentaryUpdateReques
 import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryFullUpdateResponseDto;
 import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryUpdateResponseDto;
-
 import java.time.LocalDateTime;
 
 @Slf4j
@@ -30,13 +29,16 @@ public class CommentaryServiceImpl implements CommentaryService {
     @Override
     public CommentaryCreationDtoResponse createPostByAdmin(Long adminId, Long taskId, CommentaryCreationRequest newCommentary) {
 
-        log.info("%nVia Commentary Service Post was created post by User with id %d in to task %s with id %d at time:"
+        log.info("%nVia Commentary Service Post was created post by Admin with id %d in to task %s with id %d at time:"
                 .formatted(adminId, newCommentary, taskId) +  LocalDateTime.now() + "\n");
         return null;
     }
 
     @Override
     public CommentaryCreationDtoResponse createPostByUser(Long userId, Long taskId, CommentaryCreationRequest newCommentary) {
+
+        log.info("%nVia Commentary Service Post was created post by User with id %d in to task %s with id %d at time:"
+                .formatted(userId, newCommentary, taskId) +  LocalDateTime.now() + "\n");
         return null;
     }
 

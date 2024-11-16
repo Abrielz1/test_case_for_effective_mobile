@@ -57,12 +57,12 @@ public class Task implements Serializable {
     private Priorities taskPriority;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "author_id")
     @ToString.Exclude
     private User author;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "assignee_id")
     @ToString.Exclude
     private User assignee;
 
