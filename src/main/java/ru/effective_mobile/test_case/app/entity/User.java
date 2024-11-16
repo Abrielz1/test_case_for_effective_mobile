@@ -51,6 +51,9 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false, columnDefinition = "VARCHAR(1024)")
     private String password;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

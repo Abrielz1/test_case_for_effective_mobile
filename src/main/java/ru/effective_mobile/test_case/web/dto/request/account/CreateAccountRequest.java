@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.web.dto.request;
+package ru.effective_mobile.test_case.web.dto.request.account;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

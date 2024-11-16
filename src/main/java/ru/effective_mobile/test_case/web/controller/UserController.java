@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.effective_mobile.test_case.app.service.UserService;
-import ru.effective_mobile.test_case.web.dto.request.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskCreationDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoResponse;
-import ru.effective_mobile.utils.Create;
-import ru.effective_mobile.utils.Update;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
+import ru.effective_mobile.test_case.utils.Create;
+import ru.effective_mobile.test_case.utils.Update;
 import java.time.LocalDateTime;
 import java.util.List;
 

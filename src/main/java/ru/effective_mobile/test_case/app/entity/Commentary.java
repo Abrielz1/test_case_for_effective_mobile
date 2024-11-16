@@ -44,6 +44,9 @@ public class Commentary implements Serializable {
     @JsonProperty("creation_date")
     private LocalDateTime creationDate;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @Column(name = "author_id")
     private Long userid;
 

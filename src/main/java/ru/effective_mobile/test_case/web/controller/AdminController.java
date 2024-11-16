@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.effective_mobile.test_case.app.service.AdminService;
-import ru.effective_mobile.test_case.web.dto.request.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskCreationDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedFullDtoResponse;
-import ru.effective_mobile.utils.Create;
-import ru.effective_mobile.utils.Update;
+import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
+import ru.effective_mobile.test_case.utils.Create;
+import ru.effective_mobile.test_case.utils.Update;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -41,8 +43,8 @@ public class AdminController {
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                    @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("Via Admin Controller Admin with get all tasks list at time:"
-                +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with get all tasks list at time:"
+                +  LocalDateTime.now() + "/n");
         return adminService.getAllTasksListByAdmin(from, size);
     }
 
@@ -52,8 +54,8 @@ public class AdminController {
                                                                              @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                              @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("Via Admin Controller Admin with get all tasks list by authorId %d at time:"
-                .formatted(authorId) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with get all tasks list by authorId %d at time:"
+                .formatted(authorId) +  LocalDateTime.now() + "/n");
         return adminService.getAllTasksListByAuthorIdByAdmin(authorId, from, size);
     }
 
@@ -63,8 +65,8 @@ public class AdminController {
                                                                              @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                              @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("Via Admin Controller Admin with get all tasks list by assigneeId %d at time:"
-                .formatted(assigneeId) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with get all tasks list by assigneeId %d at time:"
+                .formatted(assigneeId) +  LocalDateTime.now() + "/n");
         return adminService.getAllTasksListByAssigneeIdByAdmin(assigneeId, from, size);
     }
 
@@ -73,8 +75,8 @@ public class AdminController {
     public TaskUpdatedFullDtoResponse getTaskByAuthorIdByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
                                                                @Positive @PathVariable(name = "taskId") Long taskId) {
 
-        log.info("Via Admin Controller Admin with get task %d by authorId %d at time:"
-                .formatted(authorId, taskId) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with get task %d by authorId %d at time:"
+                .formatted(authorId, taskId) +  LocalDateTime.now() + "/n");
         return adminService.getTaskByAuthorIdByAdmin(authorId);
     }
 
@@ -83,8 +85,8 @@ public class AdminController {
     public TaskUpdatedFullDtoResponse getTaskByAssigneeIdByAdmin(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
                                                                  @Positive @PathVariable(name = "taskId") Long taskId) {
 
-        log.info("Via Admin Controller Admin with get task %d by assigneeId %d at time:"
-                .formatted(assigneeId, taskId) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with get task %d by assigneeId %d at time:"
+                .formatted(assigneeId, taskId) +  LocalDateTime.now() + "/n");
         return adminService.getTaskByAssigneeIdByAdmin(assigneeId);
     }
 
@@ -92,8 +94,8 @@ public class AdminController {
     @ResponseStatus(HttpStatus.CREATED)
     public TaskCreationDtoResponse createTaskByAdmin(@Validated(Create.class)@RequestBody TaskCreationRequest newTask) {
 
-        log.info("Via Admin Controller Admin create task %s at time:"
-                .formatted(newTask) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin create task %s at time:"
+                .formatted(newTask) +  LocalDateTime.now() + "/n");
         return adminService.createTaskByAdmin(newTask);
     }
 
@@ -103,8 +105,8 @@ public class AdminController {
                                                     @Positive @PathVariable(name = "taskId") Long taskId,
                                                     @Validated(Update.class)@RequestBody TaskUpdatedDtoRequest updateTask) {
 
-        log.info("Via Admin Controller Admin with id %d update taskId%d task %s at time:"
-                .formatted(authorId, taskId, updateTask) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with id %d update taskId %d task %s at time:"
+                .formatted(authorId, taskId, updateTask) +  LocalDateTime.now() + "/n");
         return adminService.updateTaskByAdmin(authorId, taskId, updateTask);
     }
 
@@ -113,8 +115,17 @@ public class AdminController {
     public TaskCreationDtoResponse deleteTaskByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
                                                      @Positive @PathVariable(name = "taskId") Long taskId) {
 
-        log.info("Via Admin Controller Admin with id %d delete task %s at time:"
-                .formatted(authorId, taskId) +  LocalDateTime.now());
+        log.info("%nVia Admin Controller Admin with id %d delete task %d at time:"
+                .formatted(authorId, taskId) +  LocalDateTime.now() + "/n");
         return adminService.deleteTaskByAdmin(authorId, taskId);
+    }
+
+    @PutMapping("/user/{userId}")
+    public UserResponseFullDto editUserAccountByAdmin(@Positive @PathVariable(name = "userId") Long userId,
+                                                      @Validated(Update.class)@RequestBody UpdateUserAccountRequestDto updateAccount) {
+
+        log.info("%nVia Admin Controller Admin with id %d delete task %s at time:"
+                .formatted(userId, updateAccount) +  LocalDateTime.now() + "/n");
+        return adminService.editUserAccountByAdmin(userId, updateAccount);
     }
 }

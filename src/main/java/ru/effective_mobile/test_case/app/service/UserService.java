@@ -1,9 +1,9 @@
 package ru.effective_mobile.test_case.app.service;
 
-import ru.effective_mobile.test_case.web.dto.request.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskCreationDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
 import java.util.List;
 
 public interface UserService {

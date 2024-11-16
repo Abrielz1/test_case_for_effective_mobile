@@ -1,10 +1,12 @@
 package ru.effective_mobile.test_case.app.service;
 
-import ru.effective_mobile.test_case.web.dto.request.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskCreationDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedFullDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
 import java.util.List;
 
 public interface AdminService {
@@ -24,4 +26,6 @@ public interface AdminService {
     TaskUpdatedDtoResponse updateTaskByAdmin(Long adminId, Long taskId, TaskUpdatedDtoRequest updateTask);
 
     TaskCreationDtoResponse deleteTaskByAdmin(Long adminId, Long taskId);
+
+    UserResponseFullDto editUserAccountByAdmin(Long userId, UpdateUserAccountRequestDto updateAccount);
 }

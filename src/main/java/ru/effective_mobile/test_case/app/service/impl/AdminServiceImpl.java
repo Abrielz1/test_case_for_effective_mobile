@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import ru.effective_mobile.test_case.app.repository.AdminRepository;
 import ru.effective_mobile.test_case.app.repository.UserRepository;
 import ru.effective_mobile.test_case.app.service.AdminService;
-import ru.effective_mobile.test_case.web.dto.request.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskCreationDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoRequest;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedFullDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
 import java.util.List;
 
 @Slf4j
@@ -70,6 +72,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public TaskCreationDtoResponse deleteTaskByAdmin(Long adminId, Long taskId) {
+        return null;
+    }
+
+    @Override
+    public UserResponseFullDto editUserAccountByAdmin(Long userId, UpdateUserAccountRequestDto updateAccount) {
         return null;
     }
 }
