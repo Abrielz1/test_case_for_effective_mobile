@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.exception.handler;
+package ru.effective_mobile.test_case.utils.exception.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

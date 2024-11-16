@@ -25,6 +25,7 @@ import ru.effective_mobile.test_case.app.model.enums.Priorities;
 import ru.effective_mobile.test_case.app.model.enums.TaskStatus;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,6 +57,13 @@ public class Task implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private Priorities taskPriority;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     @ToString.Exclude
@@ -66,15 +74,8 @@ public class Task implements Serializable {
     @ToString.Exclude
     private User assignee;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
-
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-
     @OneToMany(mappedBy = "task", orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Commentary> comments;
+    private List<Commentary> comments = new ArrayList<>();
 
     @Override
     public final boolean equals(Object o) {

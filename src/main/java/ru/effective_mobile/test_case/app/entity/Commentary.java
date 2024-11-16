@@ -35,20 +35,26 @@ public class Commentary implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "commentary_header", columnDefinition = "VARCHAR(320)")
+    private String commentaryHeader;
+
     @Column(nullable = false, columnDefinition = "TEXT")
-    @JsonProperty("commentary_text")
+    @JsonProperty("commentaryText")
     private String commentaryText;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creationDate")
-    @JsonProperty("creation_date")
+    @JsonProperty("creationDate")
     private LocalDateTime creationDate;
 
     @Column(name = "is_deleted")
+    @JsonProperty("isDeleted")
     private Boolean isDeleted;
 
-    @Column(name = "author_id")
-    private Long userid;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")

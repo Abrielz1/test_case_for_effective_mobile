@@ -3,7 +3,7 @@ package ru.effective_mobile.test_case.utils.mappers;
 import lombok.extern.slf4j.Slf4j;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
-import ru.effective_mobile.test_case.exception.exceptions.UnsupportedStateException;
+import ru.effective_mobile.test_case.utils.exception.exceptions.UnsupportedStateException;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;

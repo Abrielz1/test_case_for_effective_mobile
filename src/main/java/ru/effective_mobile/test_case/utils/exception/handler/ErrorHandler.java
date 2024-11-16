@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.exception.handler;
+package ru.effective_mobile.test_case.utils.exception.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpServerErrorException;
-import ru.effective_mobile.test_case.exception.exceptions.AlreadyExistsException;
-import ru.effective_mobile.test_case.exception.exceptions.BadRequestException;
-import ru.effective_mobile.test_case.exception.exceptions.ObjectNotFoundException;
-import ru.effective_mobile.test_case.exception.exceptions.UnsupportedStateException;
+import ru.effective_mobile.test_case.utils.exception.exceptions.AlreadyExistsException;
+import ru.effective_mobile.test_case.utils.exception.exceptions.BadRequestException;
+import ru.effective_mobile.test_case.utils.exception.exceptions.ObjectNotFoundException;
+import ru.effective_mobile.test_case.utils.exception.exceptions.UnsupportedStateException;
 
 @Slf4j
 @RestControllerAdvice

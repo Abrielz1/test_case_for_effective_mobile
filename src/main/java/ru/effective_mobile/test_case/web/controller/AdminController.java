@@ -43,9 +43,29 @@ public class AdminController {
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                    @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("%nVia Admin Controller Admin with get all tasks list at time:"
+        log.info("%nVia Admin Controller Admin with get all Tasks list at time:"
                 +  LocalDateTime.now() + "/n");
         return adminService.getAllTasksListByAdmin(from, size);
+    }
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOn(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                                  @Positive @RequestParam(defaultValue = "10") Integer size) {
+
+        log.info("%nVia Admin Controller Admin with get all tasks with deleted Tasks only list at time:"
+                +  LocalDateTime.now() + "/n");
+        return adminService.getAllTasksListByAdminWithIsDeletedOn(from, size);
+    }
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                                   @Positive @RequestParam(defaultValue = "10") Integer size) {
+
+        log.info("%nVia Admin Controller Admin with get all tasks without deleted Tasks list at time:"
+                +  LocalDateTime.now() + "/n");
+        return adminService.getAllTasksListByAdminWithIsDeletedOff(from, size);
     }
 
     @GetMapping("/all/{authorId}")
@@ -101,7 +121,7 @@ public class AdminController {
 
     @PutMapping("/update/{authorId}/{taskId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskUpdatedDtoResponse updateTaskByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
+    public TaskUpdatedFullDtoResponse updateTaskByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
                                                     @Positive @PathVariable(name = "taskId") Long taskId,
                                                     @Validated(Update.class)@RequestBody TaskUpdatedDtoRequest updateTask) {
 

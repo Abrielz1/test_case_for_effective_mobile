@@ -1,7 +1,7 @@
 package ru.effective_mobile.test_case.utils.mappers;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.effective_mobile.test_case.exception.exceptions.UnsupportedStateException;
+import ru.effective_mobile.test_case.utils.exception.exceptions.UnsupportedStateException;
 
 @Slf4j
 public class CommentaryMappers {

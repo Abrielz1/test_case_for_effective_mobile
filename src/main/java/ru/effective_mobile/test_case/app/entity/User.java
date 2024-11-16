@@ -66,6 +66,10 @@ public class User implements Serializable {
     @Builder.Default
     private List<Task> tasksAssignedToUser = new ArrayList<>();
 
+    @OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private List<Commentary> commentaryList = new ArrayList<>();
+
     @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "roles",nullable = false)

@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.exception.exceptions;
+package ru.effective_mobile.test_case.utils.exception.exceptions;
 
 public class AlreadyExistsException extends RuntimeException {
 
