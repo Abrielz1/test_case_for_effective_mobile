@@ -1,10 +1,30 @@
 package ru.effective_mobile.test_case.web.controller;
 
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.effective_mobile.test_case.app.service.UserService;
+import ru.effective_mobile.test_case.web.dto.request.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.TaskUpdatedDtoResponse;
+import ru.effective_mobile.utils.Create;
+import ru.effective_mobile.utils.Update;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Validated
@@ -12,38 +32,78 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
-// todo UserController
-    /*
-    todo:
-     Вам необходимо разработать простую систему управления задачами (Task Management System) с использованием Java,
-      Spring.
-     Система должна обеспечивать создание,
-      редактирование,
-       удаление,
-        просмотр задач.
-     Каждая задача должна содержать заголовок, описание,
-      статус (например, "в ожидании", "в процессе", "завершено"),
-       приоритет (например, "высокий", "средний", "низкий")
-        и комментарии, а также автора задачи и исполнителя.
-     Реализовать необходимо только API.
-     */
 
-    /*
-    todo:
-     Пользователи могут управлять своими задачами,
-     если указаны как исполнитель:
-      менять статус,
-       оставлять комментарии.
-     */
+    private final UserService userService;
 
-    /*
-  todo:
-   API должно позволять получать задачи конкретного автора или исполнителя,
-   а также все комментарии к ним.
-   Необходимо обеспечить фильтрацию и пагинацию вывода.
-    */
+    @GetMapping("/tasks/{authorId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskCreationDtoResponse> getListOfAllTasksCreatedByUser(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                                        @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                        @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-    // todo:
-    // Сервис должен корректно обрабатывать ошибки и возвращать понятные сообщения,
-    // а также валидировать входящие данные.
+        log.info("%nVia Controller Author with id %d get list of tasks at time:"
+                .formatted(authorId) +  LocalDateTime.now() + "\n");
+        return userService.getListOfAllTasksCreatedByUser(authorId, from, size);
+    }
+
+    @GetMapping("/task/{authorId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TaskCreationDtoResponse getTaskCreatedByUser(@Positive @PathVariable(name = "authorId") Long authorId) {
+
+        log.info("%nVia Controller Author with id%d get task at time:"
+                .formatted(authorId) +  LocalDateTime.now() + "\n");
+        return userService.getTaskCreatedByUser(authorId);
+    }
+
+    @PostMapping("/update/{authorId}/{taskId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TaskCreationDtoResponse createTaskByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                     @Positive @PathVariable(name = "taskId") Long taskId,
+                                                      @Validated(Create.class)@RequestBody TaskCreationRequest updateTask) {
+
+        log.info("%nVia Controller Author with id %d update task %s at time:"
+                .formatted(authorId,updateTask) +  LocalDateTime.now() + "\n");
+        return userService.createTaskByAuthor(authorId, taskId, updateTask);
+    }
+
+    @PutMapping("/update/{authorId}/{taskId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TaskUpdatedDtoResponse updateTaskByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                     @Positive @PathVariable(name = "taskId") Long taskId,
+                                                     @Validated(Update.class) @RequestBody TaskUpdatedDtoRequest updateTask) {
+
+        log.info("%nVia Controller Author with id %d update task %s at time:"
+                .formatted(authorId,updateTask) +  LocalDateTime.now() + "\n");
+        return userService.updateTaskByAuthor(authorId, taskId, updateTask);
+    }
+
+    @DeleteMapping("/delete/{authorId}/{taskId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public TaskCreationDtoResponse deleteTaskByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                      @Positive @PathVariable(name = "taskId") Long taskId) {
+
+        log.info("%nVia Controller Author with id %d delete task %d at time:"
+                .formatted(authorId, taskId) +  LocalDateTime.now() + "\n");
+        return userService.deleteTaskByAuthor(authorId, taskId);
+    }
+
+    @GetMapping("/tasks/{assigneeId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskCreationDtoResponse> getListOfAllTasksAssignedToUser(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
+                                                                         @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                         @Positive @RequestParam(defaultValue = "10") Integer size) {
+
+        log.info("%nVia Controller Assignee with id %d get list of tasks at time:"
+                .formatted(assigneeId) +  LocalDateTime.now() + "\n");
+        return userService.getListOfAllTasksAssignedToUser(assigneeId, from, size);
+    }
+
+    @GetMapping("/task/{assigneeId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TaskCreationDtoResponse getTaskAssignedToUser(@Positive @PathVariable(name = "assigneeId") Long assigneeId) {
+
+        log.info("%nVia Controller Assignee with id%d get task at time:"
+                .formatted(assigneeId) +  LocalDateTime.now() + "\n");
+        return userService.getTaskAssignedToUser(assigneeId);
+    }
 }

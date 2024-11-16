@@ -10,7 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +22,10 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 import ru.effective_mobile.test_case.app.model.enums.Priorities;
-import ru.effective_mobile.test_case.app.model.enums.Task_Status;
+import ru.effective_mobile.test_case.app.model.enums.TaskStatus;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "tasks")
@@ -30,30 +36,45 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Task {
+public class Task implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "header", nullable = false)
-    private String header;
+    @Column(name = "task_header", nullable = false)
+    private String taskHeader;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "task_description", nullable = false)
+    private String taskDescription;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "task_status", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private Task_Status status;
+    private TaskStatus taskStatus;
 
-    @Column(name = "priority", nullable = false)
+    @Column(name = "task_priority", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private Priorities priority;
+    private Priorities taskPriority;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User assignee;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    @OneToMany(mappedBy = "task", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Commentary> comments;
 
     @Override
     public final boolean equals(Object o) {
@@ -69,16 +90,5 @@ public class Task {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
-    }
-
-    @ManyToOne(optional = false)
-    private User users;
-
-    public User getUsers() {
-        return users;
-    }
-
-    public void setUsers(User users) {
-        this.users = users;
     }
 }

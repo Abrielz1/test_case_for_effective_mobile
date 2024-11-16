@@ -51,11 +51,17 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false, columnDefinition = "VARCHAR(1024)")
     private String password;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
-    private List<Task> tasks = new ArrayList<>();;
+    private List<Task> tasksCreatedByUser = new ArrayList<>();
+
+    @OneToMany(mappedBy = "assignee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @Builder.Default
+    private List<Task> tasksAssignedToUser = new ArrayList<>();
 
     @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
