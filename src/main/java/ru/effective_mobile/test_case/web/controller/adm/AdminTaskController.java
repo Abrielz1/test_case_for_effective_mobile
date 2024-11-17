@@ -20,6 +20,7 @@ import ru.effective_mobile.test_case.app.service.AdminTaskService;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
 import ru.effective_mobile.test_case.utils.Create;
 import ru.effective_mobile.test_case.utils.Update;
@@ -45,27 +46,27 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAdmin(from, size);
     }
 
-    @GetMapping("/all-deleted-on")
+    @GetMapping("/all-deleted-on-only")
     @ResponseStatus(HttpStatus.OK)
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOn(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOnly(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                                   @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("%nVia Admin Controller Admin with get all tasks with deleted Tasks only list at time:"
+        log.info("%nVia Admin Controller Admin with get all tasks without deleted Tasks list at time:"
                 +  LocalDateTime.now() + "/n");
-        return adminService.getAllTasksListByAdminWithIsDeletedOn(from, size);
+        return adminService.getAllTasksListByAdminWithIsDeletedOnly(from, size);
     }
 
     @GetMapping("/all-deleted-off")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                                   @Positive @RequestParam(defaultValue = "10") Integer size) {
+                                                                                  @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("%nVia Admin Controller Admin with get all tasks without deleted Tasks list at time:"
+        log.info("%nVia Admin Controller Admin with get all tasks with deleted Tasks only list at time:"
                 +  LocalDateTime.now() + "/n");
         return adminService.getAllTasksListByAdminWithIsDeletedOff(from, size);
     }
 
-    @GetMapping("/all/{authorId}")
+    @GetMapping("/all/author/{authorId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
                                                                              @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
@@ -76,35 +77,36 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAuthorIdByAdmin(authorId, from, size);
     }
 
-    @GetMapping("/all/{assigneeId}")
+    @GetMapping("/all/assignee/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdmin(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
-                                                                             @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                             @Positive @RequestParam(defaultValue = "10") Integer size) {
+                                                                               @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                               @Positive @RequestParam(defaultValue = "10") Integer size) {
 
         log.info("%nVia Admin Controller Admin with get all tasks list by assigneeId %d at time:"
                 .formatted(assigneeId) +  LocalDateTime.now() + "/n");
         return adminService.getAllTasksListByAssigneeIdByAdmin(assigneeId, from, size);
     }
 
-    @GetMapping("/task/{authorId}/{taskId}")
+    @GetMapping("/tasks/assignee/{taskId}/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskUpdatedFullDtoResponse getTaskByAuthorIdByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                               @Positive @PathVariable(name = "taskId") Long taskId) {
+    public List<TaskUpdatedFullDtoResponse> getTasksByAssigneeIdByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
+                                                                        @Positive @PathVariable(name = "assigneeId") Long assigneeId,
+                                                                        @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                        @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("%nVia Admin Controller Admin with get task %d by authorId %d at time:"
-                .formatted(authorId, taskId) +  LocalDateTime.now() + "/n");
-        return adminService.getTaskByAuthorIdByAdmin(authorId);
+        log.info("%nVia Admin Controller Admin with get tasks %d by assigneeId %d at time:"
+                .formatted(assigneeId, taskId) +  LocalDateTime.now() + "/n");
+        return adminService.getTasksByAssigneeIdByAdmin(taskId ,assigneeId, from, size);
     }
 
-    @GetMapping("/task/{assigneeId}/{taskId}")
+    @GetMapping("/task/{taskId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskUpdatedFullDtoResponse getTaskByAssigneeIdByAdmin(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
-                                                                 @Positive @PathVariable(name = "taskId") Long taskId) {
+    public TaskDtoResponse getTaskByTaskIdByAdmin(@Positive @PathVariable(name = "taskId") Long taskId) {
 
-        log.info("%nVia Admin Controller Admin with get task %d by assigneeId %d at time:"
-                .formatted(assigneeId, taskId) +  LocalDateTime.now() + "/n");
-        return adminService.getTaskByAssigneeIdByAdmin(assigneeId);
+        log.info("%nVia Admin Controller Admin with get tasks %d at time:"
+                .formatted(taskId) +  LocalDateTime.now() + "/n");
+        return adminService.getTaskByTaskIdByAdmin(taskId);
     }
 
     @PostMapping("/create")
@@ -116,24 +118,24 @@ public class AdminTaskController {
         return adminService.createTaskByAdmin(newTask);
     }
 
-    @PutMapping("/update/{authorId}/{taskId}")
+    @PutMapping("/update/{taskId}/{authorId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskUpdatedFullDtoResponse updateTaskByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                    @Positive @PathVariable(name = "taskId") Long taskId,
+    public TaskUpdatedFullDtoResponse updateTaskByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
+                                                        @Positive @PathVariable(name = "authorId") Long authorId,
                                                     @Validated(Update.class)@RequestBody TaskUpdatedDtoRequest updateTask) {
 
         log.info("%nVia Admin Controller Admin with id %d update taskId %d task %s at time:"
                 .formatted(authorId, taskId, updateTask) +  LocalDateTime.now() + "/n");
-        return adminService.updateTaskByAdmin(authorId, taskId, updateTask);
+        return adminService.updateTaskByAdmin(taskId, authorId, updateTask);
     }
 
-    @DeleteMapping("/delete/{authorId}/{taskId}")
+    @DeleteMapping("/delete/{taskId}/{authorId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public TaskCreationDtoResponse deleteTaskByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                     @Positive @PathVariable(name = "taskId") Long taskId) {
+    public TaskCreationDtoResponse deleteTaskByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
+                                                     @Positive @PathVariable(name = "authorId") Long authorId) {
 
         log.info("%nVia Admin Controller Admin with id %d delete task %d at time:"
                 .formatted(authorId, taskId) +  LocalDateTime.now() + "/n");
-        return adminService.deleteTaskByAdmin(authorId, taskId);
+        return adminService.deleteTaskByAdmin(taskId, authorId);
     }
 }

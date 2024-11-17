@@ -16,8 +16,6 @@ import ru.effective_mobile.test_case.web.dto.request.post.CommentaryCreationRequ
 import ru.effective_mobile.test_case.web.dto.request.post.CommentaryUpdateRequestDto;
 import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryShortUpdateResponseDto;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Service
@@ -37,14 +35,9 @@ public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService 
     @Override
     public CommentaryShortUpdateResponseDto createPostByUser(Long taskId, CommentaryCreationRequest newCommentary) {
 
-        Task taskToComment = this.checkTaskInDb(taskId);
         User commentator = this.checkUserInByEmail(newCommentary.authorEmail());
-
+        Task taskToComment = this.checkTaskInDb(taskId);
         Commentary newComment = CommentaryMappers.toCommentary(newCommentary, taskToComment, commentator);
-
-        List<Commentary> list = new ArrayList<>();
-        list.add(newComment);
-        taskToComment.setComments(list);
 
         log.info("%nVia Commentary Service Post was created post by User with email: %s in to task %s with id %d at time:"
                 .formatted(newComment.getUser().getEmail(), newComment, taskId) +  LocalDateTime.now() + "\n");
@@ -55,11 +48,12 @@ public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService 
     @Override
     public CommentaryShortUpdateResponseDto updatePostByUser(Long taskId, Long commentaryId, CommentaryUpdateRequestDto updateCommentary) {
 
-        Commentary fromCommentFromDb = this.checkCommentInDb(taskId, commentaryId);
+        Commentary fromCommentFromDb = this.checkCommentInDb(taskId, commentaryId, updateCommentary.authorEmail());
 
         if (updateCommentary.commentaryText() != null) {
 
             fromCommentFromDb.setCommentaryText(updateCommentary.commentaryText());
+            System.out.println("TEXT " + updateCommentary.commentaryText());
         }
 
         commentaryRepository.saveAndFlush(fromCommentFromDb);
@@ -90,17 +84,18 @@ public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService 
 
         log.info("%nVia UserCommentService by userEmail user %s was found".formatted(userEmail));
 
-        return userRepository.findByEmail(userEmail).orElseThrow(() -> {
+        return userRepository.findUserByEmail(userEmail).orElseThrow(() -> {
 
             log.info("%nVia UserService userEmail %s was not found".formatted(userEmail));
             return new ObjectNotFoundException("Via UserCommentService user was not found");
         });
     }
 
-    private Commentary checkCommentInDb(Long taskId, Long commentaryId) {
+    private Commentary checkCommentInDb(Long taskId, Long commentaryId, String email) {
         log.info("%nVia UserCommentService taskId: %d and commentaryId: %d was found".formatted(taskId, commentaryId));
 
-        return commentaryRepository.findCommentaryByTask_IdAndId(taskId, commentaryId).orElseThrow(() -> {
+        User author = this.checkUserInByEmail(email);
+        return commentaryRepository.findCommentaryByTask_IdAndIdAndUser_Id(taskId, commentaryId, author.getId()).orElseThrow(() -> {
 
             log.info("%nVia UserService taskId: %d and commentaryId: %d not found".formatted(taskId, commentaryId));
             return new ObjectNotFoundException("Via UserCommentService commentary was not found");

@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.effective_mobile.test_case.app.service.UserTaskService;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
 import ru.effective_mobile.test_case.utils.Create;
 import ru.effective_mobile.test_case.utils.Update;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoShortRequest;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,45 +36,44 @@ public class UserTaskController {
 
     private final UserTaskService userService;
 
-    @GetMapping("/tasks/{authorId}")
+    @GetMapping("/tasks/all/{authorId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskCreationDtoResponse> getListOfAllTasksCreatedByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                                        @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                        @Positive @RequestParam(defaultValue = "10") Integer size) {
+                                                                          @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                          @Positive @RequestParam(defaultValue = "10") Integer size) {
 
         log.info("%nVia Controller Author with id %d get list of tasks at time:"
                 .formatted(authorId) +  LocalDateTime.now() + "\n");
         return userService.getListOfAllTasksCreatedByAuthor(authorId, from, size);
     }
 
-    @GetMapping("/task/{authorId}")
+    @GetMapping("/task/{authorId}/{taskId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskCreationDtoResponse getTaskCreatedByAuthor(@Positive @PathVariable(name = "authorId") Long authorId) {
+    public TaskDtoResponse getTaskCreatedByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                  @Positive @PathVariable(name = "taskId") Long taskId) {
 
-        log.info("%nVia Controller Author with id%d get task at time:"
-                .formatted(authorId) +  LocalDateTime.now() + "\n");
-        return userService.getTaskCreatedByAuthor(authorId);
+        log.info("%nVia Controller Author with id%d get task with taskId: %d at time:"
+                .formatted(authorId, taskId) +  LocalDateTime.now() + "\n");
+        return userService.getTaskCreatedByAuthor(authorId, taskId);
     }
 
-    @PostMapping("/create/{authorId}")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public TaskCreationDtoResponse createTaskByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                      @Validated(Create.class)@RequestBody TaskCreationRequest createTask) {
+    public TaskCreationDtoResponse createTaskByAuthor(@Validated(Create.class)@RequestBody TaskCreationRequest createTask) {
 
-        log.info("%nVia Controller Author with id %d update task %s at time:"
-                .formatted(authorId, createTask) +  LocalDateTime.now() + "\n");
-        return userService.createTaskByAuthor(authorId, createTask);
+        log.info("%nVia Controller Author with email %s update task %s at time:"
+                .formatted(createTask.authorEmail(), createTask) +  LocalDateTime.now() + "\n");
+        return userService.createTaskByAuthor(createTask);
     }
 
-    @PutMapping("/update/{authorId}/{taskId}")
+    @PutMapping("/update/{taskId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskUpdatedDtoResponse updateTaskByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                     @Positive @PathVariable(name = "taskId") Long taskId,
+    public TaskUpdatedDtoResponse updateTaskByAuthor(@Positive @PathVariable(name = "taskId") Long taskId,
                                                      @Validated(Update.class) @RequestBody TaskUpdatedDtoShortRequest updateTask) {
 
-        log.info("%nVia Controller Author with id %d update task %s at time:"
-                .formatted(authorId,updateTask) +  LocalDateTime.now() + "\n");
-        return userService.updateTaskByAuthor(authorId, taskId, updateTask);
+        log.info("%nVia Controller Author with email %s update task %s at time:"
+                .formatted(updateTask.authorEmail(), updateTask) +  LocalDateTime.now() + "\n");
+        return userService.updateTaskByAuthor(taskId, updateTask);
     }
 
     @DeleteMapping("/delete/{authorId}/{taskId}")
@@ -96,14 +95,5 @@ public class UserTaskController {
         log.info("%nVia Controller Assignee with id %d get list of tasks at time:"
                 .formatted(assigneeId) +  LocalDateTime.now() + "\n");
         return userService.getListOfAllTasksAssignedToUser(assigneeId, from, size);
-    }
-
-    @GetMapping("/task/{assigneeId}")
-    @ResponseStatus(HttpStatus.OK)
-    public TaskCreationDtoResponse getTaskAssignedToUser(@Positive @PathVariable(name = "assigneeId") Long assigneeId) {
-
-        log.info("%nVia Controller Assignee with id%d get task at time:"
-                .formatted(assigneeId) +  LocalDateTime.now() + "\n");
-        return userService.getTaskAssignedToUser(assigneeId);
     }
 }

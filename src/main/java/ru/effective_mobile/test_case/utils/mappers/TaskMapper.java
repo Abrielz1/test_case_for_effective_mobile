@@ -5,10 +5,13 @@ import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.utils.exception.exceptions.UnsupportedStateException;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryDto;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 public class TaskMapper {
@@ -50,7 +53,7 @@ public class TaskMapper {
 
         return new TaskUpdatedDtoResponse(task.getTaskStatus(),
                                           task.getTaskPriority(),
-                                          assignee);
+                                          assignee.getEmail());
     }
 
     public static TaskUpdatedFullDtoResponse toTaskUpdatedFullDtoResponse(Task task){
@@ -59,7 +62,17 @@ public class TaskMapper {
                                               task.getTaskDescription(),
                                               task.getTaskPriority(),
                                               task.getTaskStatus(),
-                                              task.getAuthor(),
-                                              task.getAssignee());
+                                              task.getAuthor().getEmail(),
+                                              task.getAssignee().getEmail());
+    }
+
+    public static TaskDtoResponse toTaskDtoResponse(Task taskFromDb, List<CommentaryDto> list) {
+
+        return new TaskDtoResponse(taskFromDb.getTaskHeader(),
+                                   taskFromDb.getTaskStatus(),
+                                   taskFromDb.getTaskPriority(),
+                                   UserMapper.toUserResponseDto(taskFromDb.getAuthor()),
+                                   UserMapper.toUserResponseDto(taskFromDb.getAssignee()),
+                                   list);
     }
 }

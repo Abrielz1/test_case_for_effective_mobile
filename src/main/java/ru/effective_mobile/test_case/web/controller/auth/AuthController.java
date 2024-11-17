@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private SecurityService securityService;
+    private final SecurityService securityService;
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)

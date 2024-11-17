@@ -20,9 +20,9 @@ public record TaskCreationRequest(@NotBlank
 
                                   @NotBlank
                                   @Email
-                                  String author,
+                                  String authorEmail,
 
                                   @NotBlank
                                   @Email
-                                  String assignee) {
+                                  String assigneeEmail) {
 }

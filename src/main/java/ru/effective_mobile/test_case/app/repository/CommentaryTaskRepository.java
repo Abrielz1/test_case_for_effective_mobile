@@ -8,5 +8,7 @@ import java.util.Optional;
 @Repository
 public interface CommentaryTaskRepository extends JpaRepository<Commentary, Long> {
 
+    Optional<Commentary> findCommentaryByTask_IdAndIdAndUser_Id(Long taskId, Long commentaryId, Long authorId);
+
     Optional<Commentary> findCommentaryByTask_IdAndId(Long taskId, Long commentaryId);
 }

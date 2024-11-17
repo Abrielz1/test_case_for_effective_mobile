@@ -91,7 +91,7 @@ public class AdminCommentaryServiceImpl implements AdminCommentaryService {
 
         log.info("%nVia UserCommentService by userEmail user %s was found".formatted(userEmail));
 
-        return userRepository.findByEmail(userEmail).orElseThrow(() -> {
+        return userRepository.getUserByMail(userEmail).orElseThrow(() -> {
 
             log.info("%nVia UserService userEmail %s was not found".formatted(userEmail));
             return new ObjectNotFoundException("Via UserCommentService user was not found");

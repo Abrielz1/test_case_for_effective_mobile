@@ -14,13 +14,21 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findAllByAuthor_Id(Long authorId, PageRequest page);
 
+
     List<Task> findAllByAssignee_Id(Long assigneeId, PageRequest page);
 
-    Optional<Task> findTaskById(Long id);
+    @Query(value = """
+                   SELECT *
+                   FROM tasks
+                   WHERE tasks.id = :taskId AND tasks.author_id = :authorId
+                   """, nativeQuery = true)
+    Optional<Task> findTaskByIdAndAndAuthor(@Param("taskId") Long taskId, @Param("authorId") Long authorId);
 
-    Optional<Task> findTaskByAuthor_Id(Long authorId);
+    Optional<Task> findTaskById(Long taskId);
 
-    Optional<Task> findTaskByAssignee_Id(Long assigneeId);
+    Optional<Task> findTaskByIdAndAuthor_Id(Long taskId, Long authorId);
+
+    // ===== Оставлены, как пример, что я умею в SQL.
 
     @Query(value = """
                          SELECT * FROM tasks
@@ -39,7 +47,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Query(value = """
                    SELECT *
                    FROM tasks
-                   WHERE tasks.assigne_id = :assigneeId
+                   WHERE tasks.assignee_id = :assigneeId
                    """, nativeQuery = true)
     List<Task> getListOfAllTasksAssignedToUser(@Param("assigneeId")Long assigneeId, PageRequest page);
 }

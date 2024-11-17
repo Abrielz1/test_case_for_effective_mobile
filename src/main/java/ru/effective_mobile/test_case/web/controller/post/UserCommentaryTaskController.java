@@ -32,7 +32,7 @@ public class UserCommentaryTaskController {
     @PostMapping("/create/{taskId}")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentaryShortUpdateResponseDto createPostByUser(@Positive @PathVariable(name = "taskId") Long taskId,
-                                                          @Validated(Create.class)@RequestBody CommentaryCreationRequest newCommentary) {
+                                                             @Validated(Create.class)@RequestBody CommentaryCreationRequest newCommentary) {
 
         log.info("%nVia Commentary Controller Post was created post by User with email: %s in to task %s with id %d at time:"
                 .formatted(newCommentary.authorEmail(), newCommentary, taskId) +  LocalDateTime.now() + "\n");
@@ -43,7 +43,7 @@ public class UserCommentaryTaskController {
     @ResponseStatus(HttpStatus.OK)
     public CommentaryShortUpdateResponseDto updatePostByUser(@Positive @PathVariable(name = "taskId") Long taskId,
                                                              @Positive @PathVariable(name = "commentaryId") Long commentaryId,
-                                                             @Validated(Update.class) CommentaryUpdateRequestDto updateCommentary) {
+                                                             @Validated(Update.class)@RequestBody CommentaryUpdateRequestDto updateCommentary) {
 
         log.info("%nVia Commentary Controller Post was updated post by User with email: %s in to task %s with id %d at time:"
                 .formatted(updateCommentary.authorEmail(), updateCommentary, taskId) +  LocalDateTime.now() + "\n");

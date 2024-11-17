@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.effective_mobile.test_case.security.jwt.service.SecurityService;
 import ru.effective_mobile.test_case.security.repository.SecurityRepository;
+import ru.effective_mobile.test_case.utils.mappers.UserMapper;
 import ru.effective_mobile.test_case.web.dto.request.account.CreateAccountRequest;
 import ru.effective_mobile.test_case.web.dto.request.security.LoginRequest;
 import ru.effective_mobile.test_case.web.dto.request.security.RefreshTokenRequest;
@@ -19,10 +20,10 @@ public class SecurityServiceImpl implements SecurityService {
 
     private final SecurityRepository securityRepository;
 
-
     @Override
     public UserResponseDto registerUserAccount(CreateAccountRequest newUser) {
-        return null;
+
+        return UserMapper.toUserResponseDto(securityRepository.saveAndFlush(UserMapper.toUser(newUser)));
     }
 
     @Override

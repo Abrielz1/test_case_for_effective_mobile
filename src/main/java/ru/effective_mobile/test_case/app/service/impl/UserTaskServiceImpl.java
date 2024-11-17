@@ -11,8 +11,11 @@ import ru.effective_mobile.test_case.app.repository.UserRepository;
 import ru.effective_mobile.test_case.app.service.UserTaskService;
 import ru.effective_mobile.test_case.utils.exception.exceptions.BadRequestException;
 import ru.effective_mobile.test_case.utils.exception.exceptions.ObjectNotFoundException;
+import ru.effective_mobile.test_case.utils.mappers.CommentaryMappers;
 import ru.effective_mobile.test_case.utils.mappers.TaskMapper;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
+import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryDto;
+import ru.effective_mobile.test_case.web.dto.responce.task.TaskDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoShortRequest;
@@ -46,27 +49,30 @@ public class UserTaskServiceImpl implements UserTaskService {
     }
 
     @Override
-    public TaskCreationDtoResponse getTaskCreatedByAuthor(Long authorId) {
+    public TaskDtoResponse getTaskCreatedByAuthor(Long authorId, Long taskId) {
+
+        Task taskFromDb = this.checkTaskByIdAndUserId(taskId, authorId);
+
+        List<CommentaryDto> list = taskFromDb.getComments()
+                .stream()
+                .filter(c->!c.getIsDeleted())
+                .map(CommentaryMappers::toCommentaryDto)
+                .toList();
 
         log.info("%nVia UserTaskService Task was sent through TaskRepo by User with id %d at time:"
                 .formatted(authorId) + LocalDateTime.now() + "\n");
-
-        Task taskFromDb = this.checkTaskByAuthorId(authorId);
-
-
-
-        return TaskMapper.toTaskCreationDtoResponse(taskFromDb);
+        return TaskMapper.toTaskDtoResponse(taskFromDb, list);
     }
 
     @Override
-    public TaskCreationDtoResponse createTaskByAuthor(Long authorId, TaskCreationRequest createTask) {
+    public TaskCreationDtoResponse createTaskByAuthor(TaskCreationRequest createTask) {
 
-        User assignee = this.checkUserInDbById(authorId);
+        User author = this.checkUserInByEmail(createTask.authorEmail());
 
-        User author = this.checkUserInByEmail(createTask.assignee());
+        User assignee = this.checkUserInByEmail(createTask.assigneeEmail());
 
-        log.info("%nVia UserTaskService Task was updated post by User with id %d in to task %s at time:"
-                .formatted(authorId, createTask) + LocalDateTime.now() + "\n");
+        log.info("%nVia UserTaskService Task was updated post by User with email %s in to task %s at time:"
+                .formatted(createTask.authorEmail(), createTask) + LocalDateTime.now() + "\n");
 
         return TaskMapper.toTaskCreationDtoResponse(taskRepository.saveAndFlush(TaskMapper.toTask(createTask,
                                                                                                   author,
@@ -74,16 +80,11 @@ public class UserTaskServiceImpl implements UserTaskService {
     }
 
     @Override
-    public TaskUpdatedDtoResponse updateTaskByAuthor(Long authorId, Long taskId, TaskUpdatedDtoShortRequest updateTask) {
+    public TaskUpdatedDtoResponse updateTaskByAuthor(Long taskId, TaskUpdatedDtoShortRequest updateTask) {
 
         Task taskFromDb = this.checkTaskById(taskId);
-        User author = this.checkUserInDbById(authorId);
+        User author = this.checkUserInByEmail(updateTask.authorEmail());
         User assignee = this.checkUserInByEmail(taskFromDb.getAssignee().getEmail());
-
-        if (updateTask == null) {
-            log.info("empty task to update");
-            throw new BadRequestException("empty task to update");
-        }
 
         if (!author.getId().equals(assignee.getId())) {
             log.info("User not Assignee");
@@ -92,8 +93,9 @@ public class UserTaskServiceImpl implements UserTaskService {
 
         log.info("%nVia UserTaskService task %s was updated".formatted(updateTask));
 
-        return TaskMapper.toTaskUpdatedDtoResponse(
-                taskRepository.saveAndFlush(this.updateTask(taskFromDb, updateTask)), assignee);
+        taskFromDb = taskRepository.saveAndFlush(this.updateTask(taskFromDb, updateTask));
+
+        return TaskMapper.toTaskUpdatedDtoResponse(taskFromDb, assignee);
     }
 
     @Override
@@ -104,7 +106,7 @@ public class UserTaskServiceImpl implements UserTaskService {
 
         log.info("%nVia UserTaskService task %s was deleted".formatted(taskFromDb));
 
-        return TaskMapper.toTaskCreationDtoResponse(taskFromDb);
+        return TaskMapper.toTaskCreationDtoResponse(taskRepository.saveAndFlush(taskFromDb));
     }
 
     @Override
@@ -120,31 +122,11 @@ public class UserTaskServiceImpl implements UserTaskService {
                 .toList();
     }
 
-    @Override
-    public TaskCreationDtoResponse getTaskAssignedToUser(Long assigneeId) {
-
-        log.info("%nVia UserTaskService Tasks Assigned to User List was send through TaskRepo by User with id %d at time:"
-                .formatted(assigneeId) + LocalDateTime.now() + "\n");
-
-        return TaskMapper.toTaskCreationDtoResponse(this.checkTaskByAssignedId(assigneeId));
-    }
-
-    private User checkUserInDbById(Long authorId) {
-
-        log.info("%nVia UserTaskService author %d was found".formatted(authorId));
-
-        return userRepository.findById(authorId).orElseThrow(() -> {
-
-            log.info("%nVia UserTaskService author %d was not found".formatted(authorId));
-            return new ObjectNotFoundException("Via UserService author was not found");
-        });
-    }
-
     private User checkUserInByEmail(String userEmail) {
 
         log.info("%nVia UserTaskService userEmail %s was found".formatted(userEmail));
 
-        return userRepository.findByEmail(userEmail).orElseThrow(() -> {
+        return userRepository.getUserByMail(userEmail).orElseThrow(() -> {
 
             log.info("%nVia UserService userEmail %s was not found".formatted(userEmail));
             return new ObjectNotFoundException("Via UserService user was not found");
@@ -170,43 +152,14 @@ public class UserTaskServiceImpl implements UserTaskService {
         return taskFromDb;
     }
 
-    private Task checkTaskByAuthorId(Long authorId) {
+    private Task checkTaskByIdAndUserId(Long taskId, Long authorId) {
 
+        log.info("%nVia UserService task %d was found".formatted(taskId));
+        return taskRepository.findTaskByIdAndAndAuthor(taskId, authorId).orElseThrow(() -> {
 
-        Task taskFromDb = taskRepository.findTaskByAuthor_Id(authorId).orElseThrow(() -> {
-
-            log.info("%nVia UserTaskService task with authorId: %d was not found".formatted(authorId));
+            log.info("%nVia UserTaskService task %d was not found".formatted(taskId));
             return new ObjectNotFoundException(TEXT_MESSAGE);
         });
-
-        log.info("%nVia UserTaskService task with authorId %d was found".formatted(authorId));
-
-        if (Boolean.TRUE.equals(taskFromDb.getIsDeleted())) {
-            log.info("%nVia UserTaskService Task requested by user with id: %d was deleted at time:"
-                    .formatted(authorId) + LocalDateTime.now() + "\n");
-            throw new ObjectNotFoundException(TEXT);
-        }
-
-        return taskFromDb;
-    }
-
-    private Task checkTaskByAssignedId(Long assigneeId) {
-
-        Task taskFromDb = taskRepository.findTaskByAssignee_Id(assigneeId).orElseThrow(() -> {
-
-            log.info("%nVia UserTaskService task with assigneeId: %d was not found".formatted(assigneeId));
-            return new ObjectNotFoundException(TEXT_MESSAGE);
-        });
-
-        log.info("%nVia UserTaskService task with authorId %d was found".formatted(assigneeId));
-
-        if (Boolean.TRUE.equals(taskFromDb.getIsDeleted())) {
-            log.info("%nVia UserTaskService Task requested by assignee with assigneeId: %d was deleted at time:"
-                    .formatted(assigneeId) + LocalDateTime.now() + "\n");
-            throw new ObjectNotFoundException(TEXT);
-        }
-
-        return taskFromDb;
     }
 
     private Task updateTask(Task task,
