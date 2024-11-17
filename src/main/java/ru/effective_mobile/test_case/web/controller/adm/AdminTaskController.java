@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.web.controller;
+package ru.effective_mobile.test_case.web.controller.adm;
 
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -16,13 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import ru.effective_mobile.test_case.app.service.AdminService;
-import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
+import ru.effective_mobile.test_case.app.service.AdminTaskService;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
-import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
 import ru.effective_mobile.test_case.utils.Create;
 import ru.effective_mobile.test_case.utils.Update;
@@ -32,13 +29,13 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/admins")
+@RequestMapping("/admins/tasks")
 @RequiredArgsConstructor
-public class AdminController {
+public class AdminTaskController {
 
-    private final AdminService adminService;
+    private final AdminTaskService adminService;
 
-    @GetMapping("/all")
+    @GetMapping("/all-whole-tasks")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                    @Positive @RequestParam(defaultValue = "10") Integer size) {
@@ -48,7 +45,7 @@ public class AdminController {
         return adminService.getAllTasksListByAdmin(from, size);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/all-deleted-on")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOn(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                                   @Positive @RequestParam(defaultValue = "10") Integer size) {
@@ -58,7 +55,7 @@ public class AdminController {
         return adminService.getAllTasksListByAdminWithIsDeletedOn(from, size);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/all-deleted-off")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                                                    @Positive @RequestParam(defaultValue = "10") Integer size) {
@@ -138,14 +135,5 @@ public class AdminController {
         log.info("%nVia Admin Controller Admin with id %d delete task %d at time:"
                 .formatted(authorId, taskId) +  LocalDateTime.now() + "/n");
         return adminService.deleteTaskByAdmin(authorId, taskId);
-    }
-
-    @PutMapping("/user/{userId}")
-    public UserResponseFullDto editUserAccountByAdmin(@Positive @PathVariable(name = "userId") Long userId,
-                                                      @Validated(Update.class)@RequestBody UpdateUserAccountRequestDto updateAccount) {
-
-        log.info("%nVia Admin Controller Admin with id %d delete task %s at time:"
-                .formatted(userId, updateAccount) +  LocalDateTime.now() + "/n");
-        return adminService.editUserAccountByAdmin(userId, updateAccount);
     }
 }

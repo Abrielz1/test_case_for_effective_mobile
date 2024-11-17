@@ -8,13 +8,11 @@ import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.app.repository.TaskRepository;
 import ru.effective_mobile.test_case.app.repository.UserRepository;
-import ru.effective_mobile.test_case.app.service.AdminService;
+import ru.effective_mobile.test_case.app.service.AdminTaskService;
 import ru.effective_mobile.test_case.utils.exception.exceptions.BadRequestException;
 import ru.effective_mobile.test_case.utils.exception.exceptions.ObjectNotFoundException;
 import ru.effective_mobile.test_case.utils.mappers.TaskMapper;
-import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
@@ -24,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AdminServiceImpl implements AdminService {
+public class AdminTaskServiceImpl implements AdminTaskService {
 
     private static final String TEXT_MESSAGE = "Via AdminService task was not found";
 
@@ -35,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(Integer from, Integer size) {
 
-        log.info("%nVia UserService Tasks List with deleted tasks was sent through TaskRepo by Admin at time:"
+        log.info("%nVia AdminTaskService Tasks List with deleted tasks was sent through TaskRepo by Admin at time:"
                 + LocalDateTime.now() + "\n");
 
         return taskRepository.findAll(this.pageRequestCalculator(from, size))
@@ -47,7 +45,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOn(Integer from, Integer size) {
 
-        log.info("%nVia UserService Tasks List with deleted tasks only was sent through TaskRepo by Admin at time:"
+        log.info("%nVia AdminTaskService Tasks List with deleted tasks only was sent through TaskRepo by Admin at time:"
                  + LocalDateTime.now() + "\n");
 
         return taskRepository.findAll(this.pageRequestCalculator(from, size))
@@ -60,7 +58,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(Integer from, Integer size) {
 
-        log.info("%nVia UserService Tasks List with only deleted tasks was sent through TaskRepo by Admin at time:"
+        log.info("%nVia AdminTaskService Tasks List with only deleted tasks was sent through TaskRepo by Admin at time:"
                 + LocalDateTime.now() + "\n");
 
         return taskRepository.findAll(this.pageRequestCalculator(from, size))
@@ -73,7 +71,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdmin(Long authorId, Integer from, Integer size) {
 
-        log.info("%nVia UserService Tasks List was sent through TaskRepo by Admin at time:"
+        log.info("%nVia AdminTaskService Tasks List was sent through TaskRepo by Admin at time:"
                 + LocalDateTime.now() + "\n");
 
         return taskRepository.findAllByAuthor_Id(authorId, this.pageRequestCalculator(from, size))
@@ -85,7 +83,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdmin(Long assigneeId, Integer from, Integer size) {
 
-        log.info("%nVia UserService Tasks List was sent through TaskRepo by Admin at time:"
+        log.info("%nVia AdminTaskService Tasks List was sent through TaskRepo by Admin at time:"
                 + LocalDateTime.now() + "\n");
 
         return taskRepository.findAllByAssignee_Id(assigneeId, this.pageRequestCalculator(from, size))
@@ -97,7 +95,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public TaskUpdatedFullDtoResponse getTaskByAuthorIdByAdmin(Long authorId) {
 
-        log.info("%nVia UserService Task created by author with" +
+        log.info("%nVia AdminTaskService Task created by author with" +
                 " authorId: %d was sent through TaskRepo by Admin at time:".formatted(authorId)
                 + LocalDateTime.now() + "\n");
         return TaskMapper.toTaskUpdatedFullDtoResponse(this.checkTaskByAuthorId(authorId));
@@ -106,7 +104,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public TaskUpdatedFullDtoResponse getTaskByAssigneeIdByAdmin(Long assigneeId) {
 
-        log.info("%nVia UserService Task created by assignee with" +
+        log.info("%nVia AdminTaskService Task created by assignee with" +
                 " assigneeId: %d was sent through TaskRepo by Admin at time:".formatted(assigneeId)
                 + LocalDateTime.now() + "\n");
         return TaskMapper.toTaskUpdatedFullDtoResponse(this.checkTaskByAssignedId(assigneeId));
@@ -119,7 +117,7 @@ public class AdminServiceImpl implements AdminService {
 
         User author = this.checkUserInByEmail(newTask.assignee());
 
-        log.info(("%nVia UserService Task was updated post by User with authorId %d" +
+        log.info(("%nVia AdminTaskService Task was updated post by User with authorId %d" +
                 " and assignee with assigneeId : %d in to task %s at time:")
                 .formatted(author.getId(), assignee.getId(), newTask) + LocalDateTime.now() + "\n");
 
@@ -131,7 +129,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public TaskUpdatedFullDtoResponse updateTaskByAdmin(Long authorId, Long taskId, TaskUpdatedDtoRequest updateTask) {
 
-        log.info(("%nVia UserService Task was updated post by User with authorId %d" +
+        log.info(("%nVia AdminTaskService Task was updated post by User with authorId %d" +
                 " and assignee with taskId : %d in to task at time:")
                 .formatted(authorId,  taskId) + LocalDateTime.now() + "\n");
         return TaskMapper.toTaskUpdatedFullDtoResponse(
@@ -143,14 +141,9 @@ public class AdminServiceImpl implements AdminService {
         Task taskFromDb = this.checkTaskByAuthorId(authorId);
         taskFromDb.setIsDeleted(true);
 
-        log.info("%nVia UserService task %s was deleted".formatted(taskFromDb));
+        log.info("%nVia AdminTaskService task %s was deleted".formatted(taskFromDb));
 
         return TaskMapper.toTaskCreationDtoResponse(taskRepository.saveAndFlush(taskFromDb));
-    }
-
-    @Override
-    public UserResponseFullDto editUserAccountByAdmin(Long userId, UpdateUserAccountRequestDto updateAccount) {
-        return null;
     }
 
     private PageRequest pageRequestCalculator(Integer from,
@@ -161,7 +154,7 @@ public class AdminServiceImpl implements AdminService {
 
     private Task checkTaskByAuthorId(Long authorId) {
 
-        log.info("%nVia UserService task with authorId %d was found".formatted(authorId));
+        log.info("%nVia AdminTaskService task with authorId %d was found".formatted(authorId));
 
         return taskRepository.findTaskByAuthor_Id(authorId).orElseThrow(() -> {
 
@@ -172,7 +165,7 @@ public class AdminServiceImpl implements AdminService {
 
     private Task checkTaskByAssignedId(Long assigneeId) {
 
-        log.info("%nVia UserService task with authorId %d was found".formatted(assigneeId));
+        log.info("%nVia AdminTaskService task with authorId %d was found".formatted(assigneeId));
 
         return taskRepository.findTaskByAssignee_Id(assigneeId).orElseThrow(() -> {
 
@@ -183,7 +176,7 @@ public class AdminServiceImpl implements AdminService {
 
     private User checkUserInByEmail(String userEmail) {
 
-        log.info("%nVia UserService userEmail %s was found".formatted(userEmail));
+        log.info("%nVia AdminTaskService userEmail %s was found".formatted(userEmail));
 
         return userRepository.findByEmail(userEmail).orElseThrow(() -> {
 
@@ -194,10 +187,10 @@ public class AdminServiceImpl implements AdminService {
 
     private Task checkTaskByTaskId(Long taskId) {
 
-        log.info("%nVia UserService task with taskId %d was found".formatted(taskId));
+        log.info("%nVia AdminTaskService task with taskId %d was found".formatted(taskId));
         return taskRepository.findTaskById(taskId).orElseThrow(() -> {
 
-            log.info("%nVia UserService taskId %d was not found".formatted(taskId));
+            log.info("%nVia AdminTaskService taskId %d was not found".formatted(taskId));
             return new ObjectNotFoundException("Via UserService task was not found");
         });
     }
@@ -225,7 +218,7 @@ public class AdminServiceImpl implements AdminService {
             task.setAssignee(assignee);
         }
 
-        log.info("%nVia UserService task %s was updated from updateTask %s".formatted(task, updateTask));
+        log.info("%nVia AdminTaskService task %s was updated from updateTask %s".formatted(task, updateTask));
         return task;
     }
 }

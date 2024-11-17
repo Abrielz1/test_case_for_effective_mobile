@@ -5,7 +5,7 @@ spring:
       port: 6379
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
@@ -14,7 +14,7 @@ spring:
     generate-ddl: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ticket_db
+    url: jdbc:postgresql://localhost:5432/tasks_db
     username: root
     password: root
 
@@ -40,6 +40,6 @@ logging:
 
 app:
   jwt:
-    secret: "someSecretKey"
+    secret: "someSecretKey_3782hn9238yn12nx4wh89"
     tokenExpiration: 10m
     refreshTokenExpiration: 60m

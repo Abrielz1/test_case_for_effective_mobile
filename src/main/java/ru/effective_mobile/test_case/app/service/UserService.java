@@ -1,25 +1,17 @@
 package ru.effective_mobile.test_case.app.service;
 
-import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
-import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoShortRequest;
-
-import java.util.List;
+import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
+import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
 
 public interface UserService {
 
-    List<TaskCreationDtoResponse> getListOfAllTasksCreatedByAuthor(Long authorId, Integer from, Integer size);
+    UserResponseFullDto editUserAccountByAdmin(Long userId, UpdateUserAccountRequestDto updateAccountDto);
 
-    TaskCreationDtoResponse getTaskCreatedByAuthor(Long authorId);
+    UserResponseFullDto banUserAccount(Long userId);
 
-    TaskCreationDtoResponse createTaskByAuthor(Long authorId, TaskCreationRequest createTask);
+    UserResponseFullDto unbanUserAccount(Long userId);
 
-    TaskUpdatedDtoResponse updateTaskByAuthor(Long authorId, Long taskId, TaskUpdatedDtoShortRequest updateTask);
+    UserResponseFullDto deleteUserAccount(Long userId);
 
-    TaskCreationDtoResponse deleteTaskByAuthor(Long authorId, Long taskId);
-
-    List<TaskCreationDtoResponse> getListOfAllTasksAssignedToUser(Long assigneeId, Integer from, Integer size);
-
-    TaskCreationDtoResponse getTaskAssignedToUser(Long assigneeId);
+    UserResponseFullDto undeleteUserAccount(Long userId);
 }

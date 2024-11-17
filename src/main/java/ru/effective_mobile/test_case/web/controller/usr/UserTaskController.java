@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.web.controller;
+package ru.effective_mobile.test_case.web.controller.usr;
 
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import ru.effective_mobile.test_case.app.service.UserService;
+import ru.effective_mobile.test_case.app.service.UserTaskService;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoResponse;
@@ -32,9 +32,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class UserController {
+public class UserTaskController {
 
-    private final UserService userService;
+    private final UserTaskService userService;
 
     @GetMapping("/tasks/{authorId}")
     @ResponseStatus(HttpStatus.OK)

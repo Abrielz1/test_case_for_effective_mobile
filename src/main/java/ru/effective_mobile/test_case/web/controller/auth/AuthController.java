@@ -1,4 +1,4 @@
-package ru.effective_mobile.test_case.web.controller;
+package ru.effective_mobile.test_case.web.controller.auth;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

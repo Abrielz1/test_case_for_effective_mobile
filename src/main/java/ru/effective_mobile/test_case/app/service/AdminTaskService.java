@@ -1,14 +1,12 @@
 package ru.effective_mobile.test_case.app.service;
 
-import ru.effective_mobile.test_case.web.dto.request.account.UpdateUserAccountRequestDto;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskCreationDtoResponse;
 import ru.effective_mobile.test_case.web.dto.request.task.TaskUpdatedDtoRequest;
 import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedFullDtoResponse;
 import java.util.List;
 
-public interface AdminService {
+public interface AdminTaskService {
 
     List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(Integer from, Integer size);
 
@@ -29,6 +27,4 @@ public interface AdminService {
     TaskUpdatedFullDtoResponse updateTaskByAdmin(Long authorId, Long taskId, TaskUpdatedDtoRequest updateTask);
 
     TaskCreationDtoResponse deleteTaskByAdmin(Long authorId, Long taskId);
-
-    UserResponseFullDto editUserAccountByAdmin(Long userId, UpdateUserAccountRequestDto updateAccount);
 }

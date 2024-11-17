@@ -54,6 +54,9 @@ public class User implements Serializable {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
+    @Column(name = "is_banned")
+    private Boolean isBanned;
+
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
@@ -66,7 +69,7 @@ public class User implements Serializable {
     @Builder.Default
     private List<Task> tasksAssignedToUser = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Commentary> commentaryList = new ArrayList<>();
 

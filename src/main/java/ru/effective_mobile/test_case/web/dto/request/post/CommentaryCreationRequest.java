@@ -4,7 +4,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record CommentaryCreationRequest(@NotBlank
+                                        String commentaryHeader,
+
+                                        @NotBlank
                                         String commentaryText,
+
                                         @NotBlank
                                         @Email
                                         String authorEmail) {
