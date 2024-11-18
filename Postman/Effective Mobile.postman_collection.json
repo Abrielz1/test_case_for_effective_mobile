@@ -584,7 +584,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuZW5lMTE5MEBtYWlsLnJ1IiwiaWQiOjIsImVtYWlsIjoibmVuZTExOTBAbWFpbC5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MzE5Mzg4NzcsImV4cCI6MTczMTkzOTQ3N30.1iBLWMTp1gtD1BFfD6GC9WgrgnQR6wwnHchs2OTyoz_te17Fw-Hl9-2HMg06SWIWoCt1NeTTqmRmJCGjCGTFnQ",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuZW5lMTE5MEBtYWlsLnJ1IiwiaWQiOjIsImVtYWlsIjoibmVuZTExOTBAbWFpbC5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MzE5NjMyMDksImV4cCI6MTczMTk2MzgwOX0.PtHyeQW3vbhB_0D3lsKDgIp7f5c5h1aFAMCQlA4_j3fe0cqaCYq8nantXSkBOFig_HZ9If9TE6_A1mjwLDabFw",
 											"type": "string"
 										}
 									]
@@ -623,7 +623,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
 											"type": "string"
 										}
 									]
@@ -663,7 +663,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
 											"type": "string"
 										}
 									]
@@ -702,7 +702,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuZW5lMTE5MEBtYWlsLnJ1IiwiaWQiOjIsImVtYWlsIjoibmVuZTExOTBAbWFpbC5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MzE5NjMyMDksImV4cCI6MTczMTk2MzgwOX0.PtHyeQW3vbhB_0D3lsKDgIp7f5c5h1aFAMCQlA4_j3fe0cqaCYq8nantXSkBOFig_HZ9If9TE6_A1mjwLDabFw",
 											"type": "string"
 										}
 									]
@@ -741,7 +741,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
 											"type": "string"
 										}
 									]
@@ -773,14 +773,14 @@
 							"response": []
 						},
 						{
-							"name": "admiin task created in adm controller aaugnee adm",
+							"name": "admiin task created in adm controller assignee adm",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
 											"type": "string"
 										}
 									]
@@ -813,14 +813,14 @@
 							"response": []
 						},
 						{
-							"name": "admiin task created in adm controller aaugnee usr",
+							"name": "admiin task created in adm controller assignee usr",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
 											"type": "string"
 										}
 									]
@@ -858,291 +858,333 @@
 					"name": "get",
 					"item": [
 						{
-							"name": "getAll by user by author",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
+							"name": "admin",
+							"item": [
+								{
+									"name": "getAll by assignee without deleted task admiin task created in adm controller assignee adm",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/all/assignee-short/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"all",
+												"assignee-short",
+												"2"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/tasks/all/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"tasks",
-										"all",
-										"1"
-									]
+								{
+									"name": "getAll by author deleted tasks off in adm controller",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzkyMSwiZXhwIjoxNzMxOTY0NTIxfQ.K2aqOXhAiYh9ZYRz588i-FmVgyv_bj6tBH8NUm0R8AtnUpdOfXrevmAculNd0Vgt8kx1PxpwkQgdO0K84xCf2g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/all-deleted-off",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"all-deleted-off"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAll by author deleted tasks only in adm controller",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzkyMSwiZXhwIjoxNzMxOTY0NTIxfQ.K2aqOXhAiYh9ZYRz588i-FmVgyv_bj6tBH8NUm0R8AtnUpdOfXrevmAculNd0Vgt8kx1PxpwkQgdO0K84xCf2g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/all-deleted-on-only",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"all-deleted-on-only"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAll task in db in admin controller",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/all-whole-tasks",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"all-whole-tasks"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAll by assignee without deleted task admiin task created in adm controller assignee adm",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2NDEyMiwiZXhwIjoxNzMxOTY0NzIyfQ.1pYoF7PEAwkBzEimOxObWzZNa3b_CplldobylSIycBCWvQ_OCT90jI6tlJY1xqTSgQa9YfYvJ3HiCBT63zqGfA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/all/assignee-short/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"all",
+												"assignee-short",
+												"2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAll by assignee with deleted task admin task created in adm controller assignee adm",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2NDEyMiwiZXhwIjoxNzMxOTY0NzIyfQ.1pYoF7PEAwkBzEimOxObWzZNa3b_CplldobylSIycBCWvQ_OCT90jI6tlJY1xqTSgQa9YfYvJ3HiCBT63zqGfA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/all/assignee-full/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"all",
+												"assignee-full",
+												"2"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						},
 						{
-							"name": "get user task by authorId and taskId",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
+							"name": "user",
+							"item": [
+								{
+									"name": "getAll by user by author",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/tasks/all/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"tasks",
+												"all",
+												"1"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/task/2/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"task",
-										"2",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "getAll tasks by user where he is assigneeI",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
+								{
+									"name": "get user task by authorId and taskId",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/task/2/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"task",
+												"2",
+												"2"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/tasks/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"tasks",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "getAll by assignee task admiin task created in adm controller assignee adm",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
+								{
+									"name": "get user task by taskId by admin in admin controller",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/admins/tasks/task/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admins",
+												"tasks",
+												"task",
+												"2"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/admins/tasks/tasks/assignee/6/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"admins",
-										"tasks",
-										"tasks",
-										"assignee",
-										"6",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "getAll by author task created in adm controller",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
+								{
+									"name": "getAll tasks by user where he is assigneeI",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk2MzIwNiwiZXhwIjoxNzMxOTYzODA2fQ.tqgVpAWptd288RqXfRh1NjpA66MmH0qWejN8NEaeGKjOhwPDCgT1jHcUQAp0h43yzIg2nSbOCtKmAhSWgPhWYA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/tasks/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"tasks",
+												"2"
+											]
 										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/admins/tasks/all/author/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"admins",
-										"tasks",
-										"all",
-										"author",
-										"2"
-									]
+									},
+									"response": []
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "getAll by author deleted tasks off in adm controller",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/admins/tasks/all-deleted-off",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"admins",
-										"tasks",
-										"all-deleted-off"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "getAll by author deleted tasks only in adm controller",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/admins/tasks/all-deleted-on-only",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"admins",
-										"tasks",
-										"all-deleted-on-only"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "getAkk task in db in admin controller",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/admins/tasks/all-whole-tasks",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"admins",
-										"tasks",
-										"all-whole-tasks"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get user task by taskId by admin in admin controller",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/admins/tasks/task/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"admins",
-										"tasks",
-										"task",
-										"2"
-									]
-								}
-							},
-							"response": []
+							]
 						}
 					]
 				},

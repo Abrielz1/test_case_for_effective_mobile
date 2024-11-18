@@ -60,7 +60,7 @@ public class AdminTaskController {
     @GetMapping("/all-deleted-on-only")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOnly(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                                  @Positive @RequestParam(defaultValue = "10") Integer size) {
+                                                                                    @Positive @RequestParam(defaultValue = "10") Integer size) {
 
         log.info("%nVia Admin Controller Admin with get all tasks without deleted Tasks list at time:"
                 +  LocalDateTime.now() + "/n");
@@ -74,7 +74,7 @@ public class AdminTaskController {
     @GetMapping("/all-deleted-off")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                                  @Positive @RequestParam(defaultValue = "10") Integer size) {
+                                                                                   @Positive @RequestParam(defaultValue = "10") Integer size) {
 
         log.info("%nVia Admin Controller Admin with get all tasks with deleted Tasks only list at time:"
                 +  LocalDateTime.now() + "/n");
@@ -82,58 +82,73 @@ public class AdminTaskController {
     }
 
     @Operation(
-            summary = "Получение всех записей задач (Task) по id автора, в том числе удалённых (ADMIN)",
+            summary = "Получение всех записей задач (Task) по id автора, кроме удалённых (ADMIN)",
             description = "Позволяет получить все записи по id автора из БД, включая удалённые (ADMIN)"
     )
-    @GetMapping("/all/author/{authorId}")
+    @GetMapping("/all/author-short/{authorId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
-                                                                             @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                             @Positive @RequestParam(defaultValue = "10") Integer size) {
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdminWithoutDeleted(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                                                           @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                                           @Positive @RequestParam(defaultValue = "10") Integer size) {
 
         log.info("%nVia Admin Controller Admin with get all tasks list by authorId %d at time:"
                 .formatted(authorId) +  LocalDateTime.now() + "/n");
-        return adminService.getAllTasksListByAuthorIdByAdmin(authorId, from, size);
+        return adminService.getAllTasksListByAuthorIdByAdminWithoutDeletedTasks(authorId, from, size);
     }
+
+    @Operation(
+            summary = "Получение всех записей задач (Task) по id автора, в том числе удалённых (ADMIN)",
+            description = "Позволяет получить все записи по id автора из БД, включая удалённые (ADMIN)"
+    )
+    @GetMapping("/all/author-full/{authorId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdminWithDeleted(@Positive @PathVariable(name = "authorId") Long authorId,
+                                                                                        @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                                        @Positive @RequestParam(defaultValue = "10") Integer size) {
+
+        log.info("%nVia Admin Controller Admin with get all tasks list by authorId %d at time:"
+                .formatted(authorId) +  LocalDateTime.now() + "/n");
+        return adminService.getAllTasksListByAuthorIdByAdminWithDeleted(authorId, from, size);
+    }
+
 
     @Operation(
             summary = "Получение всех записей задач (Task) по id исполнителя, кроме удалённых (ADMIN)",
             description = "Позволяет получить все записи по id исполнителя из БД, без удалённых (ADMIN)"
     )
-    @GetMapping("/all/assignee/{assigneeId}")
+    @GetMapping("/all/assignee-short/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdmin(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
-                                                                               @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                               @Positive @RequestParam(defaultValue = "10") Integer size) {
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdminWithoutDeleted(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
+                                                                                             @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                                             @Positive @RequestParam(defaultValue = "10") Integer size) {
 
         log.info("%nVia Admin Controller Admin with get all tasks list by assigneeId %d at time:"
                 .formatted(assigneeId) +  LocalDateTime.now() + "/n");
-        return adminService.getAllTasksListByAssigneeIdByAdmin(assigneeId, from, size);
+        return adminService.getAllTasksListByAssigneeIdByAdminWithoutDeleted(assigneeId, from, size);
     }
 
     @Operation(
             summary = "Получение всех записей задач (Task) по id исполнителя, в том числе удалённых (ADMIN)",
             description = "Позволяет получить все записи по id исполнителя из БД, включая удалённые (ADMIN)"
     )
-    @GetMapping("/tasks/assignee/{taskId}/{assigneeId}")
+    @GetMapping("/all/assignee-full/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TaskUpdatedFullDtoResponse> getTasksByAssigneeIdByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
-                                                                        @Positive @PathVariable(name = "assigneeId") Long assigneeId,
-                                                                        @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
-                                                                        @Positive @RequestParam(defaultValue = "10") Integer size) {
+    public List<TaskUpdatedFullDtoResponse> getAllTasksByAssigneeIdByAdminWithDeleted(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
+                                                                                      @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                                                                      @Positive @RequestParam(defaultValue = "10") Integer size) {
 
-        log.info("%nVia Admin Controller Admin with get tasks %d by assigneeId %d at time:"
-                .formatted(assigneeId, taskId) +  LocalDateTime.now() + "/n");
-        return adminService.getTasksByAssigneeIdByAdmin(taskId ,assigneeId, from, size);
+        log.info("%nVia Admin Controller Admin with get tasks by assigneeId %d at time:"
+                .formatted(assigneeId) +  LocalDateTime.now() + "/n");
+        return adminService.getAllTasksListByAssigneeIdByAdminWithDeleted(assigneeId, from, size);
     }
 
     @Operation(
-            summary = "Получение записи задачи (Task) по id автора (ADMIN)",
-            description = "Позволяет получить запись (Task) из БД по id автора, кроме удалённых (ADMIN)"
+            summary = "Получение записи задачи (Task) по id задачи (ADMIN)",
+            description = "Позволяет получить запись (Task) из БД по id задачи, кроме удалённых (ADMIN)"
     )
     @GetMapping("/task/{taskId}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskDtoResponse getTaskByTaskIdByAdmin(@Positive @PathVariable(name = "taskId") Long taskId) {
+    public TaskDtoResponse getTaskByTaskIdByAdminWithoutDeleted(@Positive @PathVariable(name = "taskId") Long taskId) {
 
         log.info("%nVia Admin Controller Admin with get tasks %d at time:"
                 .formatted(taskId) +  LocalDateTime.now() + "/n");
@@ -161,7 +176,7 @@ public class AdminTaskController {
     @ResponseStatus(HttpStatus.OK)
     public TaskUpdatedFullDtoResponse updateTaskByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
                                                         @Positive @PathVariable(name = "authorId") Long authorId,
-                                                    @Validated(Update.class)@RequestBody TaskUpdatedDtoRequest updateTask) {
+                                                        @Validated(Update.class)@RequestBody TaskUpdatedDtoRequest updateTask) {
 
         log.info("%nVia Admin Controller Admin with id %d update taskId %d task %s at time:"
                 .formatted(authorId, taskId, updateTask) +  LocalDateTime.now() + "/n");

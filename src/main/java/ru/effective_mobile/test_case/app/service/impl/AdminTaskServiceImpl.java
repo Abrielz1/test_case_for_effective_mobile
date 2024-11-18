@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.effective_mobile.test_case.app.entity.Commentary;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.app.repository.TaskRepository;
@@ -30,11 +29,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminTaskServiceImpl implements AdminTaskService {
 
+    private static final String TEXT_MESSAGE2 = "%nVia AdminTaskService Tasks List was sent through TaskRepo by Admin at time:";
+
     private static final String TEXT_MESSAGE = "Via AdminService task was not found";
 
     private final UserRepository userRepository;
 
     private final TaskRepository taskRepository;
+
 
     @Override
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(Integer from, Integer size) {
@@ -49,8 +51,20 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(Integer from, Integer size) {
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOnly(Integer from, Integer size) {
 
+        log.info("%nVia AdminTaskService Tasks List with deleted tasks only was sent through TaskRepo by Admin at time:"
+                + LocalDateTime.now() + "\n");
+
+        return taskRepository.findAll(this.pageRequestCalculator(from, size))
+                .stream()
+                .filter(Task::getIsDeleted)
+                .map(TaskMapper::toTaskUpdatedFullDtoResponse)
+                .toList();
+    }
+
+    @Override
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(Integer from, Integer size) {
         log.info("%nVia AdminTaskService Tasks List with only deleted tasks was sent through TaskRepo by Admin at time:"
                 + LocalDateTime.now() + "\n");
 
@@ -62,23 +76,8 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOnly(Integer from, Integer size) {
-
-        log.info("%nVia AdminTaskService Tasks List with deleted tasks only was sent through TaskRepo by Admin at time:"
-                 + LocalDateTime.now() + "\n");
-
-        return taskRepository.findAll(this.pageRequestCalculator(from, size))
-                .stream()
-                .filter(Task::getIsDeleted)
-                .map(TaskMapper::toTaskUpdatedFullDtoResponse)
-                .toList();
-    }
-
-    @Override
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdmin(Long authorId, Integer from, Integer size) {
-
-        log.info("%nVia AdminTaskService Tasks List was sent through TaskRepo by Admin at time:"
-                + LocalDateTime.now() + "\n");
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdminWithoutDeletedTasks(Long authorId, Integer from, Integer size) {
+        log.info(TEXT_MESSAGE2 + LocalDateTime.now() + "\n");
 
         return taskRepository.findAllByAuthor_Id(authorId, this.pageRequestCalculator(from, size))
                 .stream()
@@ -88,10 +87,20 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
-    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdmin(Long assigneeId, Integer from, Integer size) {
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdminWithDeleted(Long authorId, Integer from, Integer size) {
+        log.info(TEXT_MESSAGE2 + LocalDateTime.now() + "\n");
 
-        log.info("%nVia AdminTaskService Tasks List was sent through TaskRepo by Admin at time:"
-                + LocalDateTime.now() + "\n");
+        return taskRepository.findAllByAuthor_Id(authorId, this.pageRequestCalculator(from, size))
+                .stream()
+                .map(TaskMapper::toTaskUpdatedFullDtoResponse)
+                .toList();
+
+    }
+
+    @Override
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdminWithoutDeleted(Long assigneeId, Integer from, Integer size) {
+
+        log.info(TEXT_MESSAGE2 + LocalDateTime.now() + "\n");
 
         return taskRepository.findAllByAssignee_Id(assigneeId, this.pageRequestCalculator(from, size))
                 .stream()
@@ -101,7 +110,7 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
-    public List<TaskUpdatedFullDtoResponse> getTasksByAssigneeIdByAdmin(Long taskId, Long assigneeId, Integer from, Integer size) {
+    public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdminWithDeleted(Long assigneeId, Integer from, Integer size) {
 
         log.info("%nVia AdminTaskService Task created by assignee with" +
                 " assigneeId: %d was sent through TaskRepo by Admin at time:".formatted(assigneeId)
@@ -128,7 +137,6 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
-    @Transactional
     public TaskCreationDtoResponse createTaskByAdmin(TaskCreationRequest newTask) {
 
         User assignee = this.checkUserInByEmail(newTask.authorEmail());
@@ -145,7 +153,6 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
-    @Transactional
     public TaskUpdatedFullDtoResponse updateTaskByAdmin(Long taskId, Long authorId, TaskUpdatedDtoRequest updateTask) {
 
         log.info(("%nVia AdminTaskService Task was updated post by User with authorId %d" +
