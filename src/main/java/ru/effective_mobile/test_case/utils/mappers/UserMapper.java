@@ -1,6 +1,7 @@
 package ru.effective_mobile.test_case.utils.mappers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.app.model.enums.RoleType;
 import ru.effective_mobile.test_case.utils.exception.exceptions.UnsupportedStateException;
@@ -24,7 +25,7 @@ public class UserMapper {
         return new UserResponseDto(author.getEmail());
     }
 
-    public static User toUser(CreateAccountRequest newUser) {
+    public static User toUser(CreateAccountRequest newUser, PasswordEncoder passwordEncoder) {
 
         Set<RoleType> set = new HashSet<>(newUser.roles());
 
@@ -32,7 +33,7 @@ public class UserMapper {
         return User
                 .builder()
                 .email(newUser.email())
-                .password(newUser.password())
+                .password(passwordEncoder.encode(newUser.password()))
                 .roles(set)
                 .build();
     }

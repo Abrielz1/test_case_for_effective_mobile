@@ -7,31 +7,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-//import org.springframework.data.annotation.Id;
-//import org.springframework.data.redis.core.RedisHash;
-//import org.springframework.data.redis.core.index.Indexed;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.index.Indexed;
 import java.time.Instant;
 
 @Setter
 @Getter
 @Builder
 @ToString
-//@RedisHash("refresh_tokens")
+@RedisHash("refresh_tokens")
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class RefreshToken {
 
-  //  @Id
-  //  @Indexed
+    @Id
+    @Indexed
     private Long id;
 
- //   @Indexed
+    @Indexed
     private Long userId;
 
-  //  @Indexed
+    @Indexed
     private String token;
 
- //   @Indexed
+    @Indexed
     private Instant expiryDate;
 }
