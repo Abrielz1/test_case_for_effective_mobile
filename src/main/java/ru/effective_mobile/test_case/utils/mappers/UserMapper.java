@@ -6,6 +6,7 @@ import ru.effective_mobile.test_case.app.model.enums.RoleType;
 import ru.effective_mobile.test_case.utils.exception.exceptions.UnsupportedStateException;
 import ru.effective_mobile.test_case.web.dto.request.account.CreateAccountRequest;
 import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseDto;
+import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseFullDto;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,5 +35,15 @@ public class UserMapper {
                 .password(newUser.password())
                 .roles(set)
                 .build();
+    }
+
+    public static UserResponseFullDto toUserFullResponseDto(User user) {
+
+        return new UserResponseFullDto(user.getId(),
+                                       user.getEmail(),
+                                       user.getPassword(),
+                                       user.getIsDeleted(),
+                                       user.getIsBanned(),
+                                       user.getRoles());
     }
 }
