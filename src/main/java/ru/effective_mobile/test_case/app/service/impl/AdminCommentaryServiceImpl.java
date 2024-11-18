@@ -3,6 +3,7 @@ package ru.effective_mobile.test_case.app.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.effective_mobile.test_case.app.entity.Commentary;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
@@ -20,6 +21,7 @@ import java.util.Objects;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AdminCommentaryServiceImpl implements AdminCommentaryService {
 
@@ -34,6 +36,7 @@ public class AdminCommentaryServiceImpl implements AdminCommentaryService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public CommentaryFullUpdateResponseDto createPostByAdmin(Long taskId, CommentaryCreationRequest newCommentary) {
 
         Task taskToComment = this.checkTaskInDb(taskId);
@@ -47,6 +50,7 @@ public class AdminCommentaryServiceImpl implements AdminCommentaryService {
     }
 
     @Override
+    @Transactional
     public CommentaryFullUpdateResponseDto updatePostByAdmin(Long taskId, Long commentaryId, CommentaryUpdateRequestDto updateCommentary) {
 
         Commentary commentaryToUpdate = this.checkCommentInDb(taskId, commentaryId);

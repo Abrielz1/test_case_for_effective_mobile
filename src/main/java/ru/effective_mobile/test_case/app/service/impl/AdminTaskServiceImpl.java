@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.effective_mobile.test_case.app.entity.Commentary;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
@@ -25,6 +26,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AdminTaskServiceImpl implements AdminTaskService {
 
@@ -126,6 +128,7 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
+    @Transactional
     public TaskCreationDtoResponse createTaskByAdmin(TaskCreationRequest newTask) {
 
         User assignee = this.checkUserInByEmail(newTask.authorEmail());
@@ -142,6 +145,7 @@ public class AdminTaskServiceImpl implements AdminTaskService {
     }
 
     @Override
+    @Transactional
     public TaskUpdatedFullDtoResponse updateTaskByAdmin(Long taskId, Long authorId, TaskUpdatedDtoRequest updateTask) {
 
         log.info(("%nVia AdminTaskService Task was updated post by User with authorId %d" +

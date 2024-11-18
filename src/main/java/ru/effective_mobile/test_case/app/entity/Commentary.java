@@ -21,6 +21,10 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * Класс описывающий сущность комментарий (Commentary) к сущности задача (Task) сущностью пользователь (User)
+ **/
+
 @Table(name = "commentaries")
 @Entity
 @Getter
@@ -31,31 +35,52 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Commentary implements Serializable {
 
+    /**
+     * id комментария
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+      * заголовок комментария
+     */
     @Column(name = "commentary_header", columnDefinition = "VARCHAR(320)")
     private String commentaryHeader;
 
+    /**
+     * текст комментария
+     */
     @Column(nullable = false, columnDefinition = "TEXT")
     @JsonProperty("commentaryText")
     private String commentaryText;
 
+    /**
+     * дата создания комментария
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creationDate")
     @JsonProperty("creationDate")
     private LocalDateTime creationDate;
 
+    /**
+     * флаг удалён/deleted ли комментарий
+     */
     @Column(name = "is_deleted")
     @JsonProperty("isDeleted")
     private Boolean isDeleted;
 
+    /**
+     * автор
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
 
+    /**
+     * задача
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")
     private Task task;

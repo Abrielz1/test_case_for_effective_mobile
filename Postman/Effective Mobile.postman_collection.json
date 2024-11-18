@@ -260,6 +260,9 @@
 						{
 							"name": "admin login",
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -289,6 +292,9 @@
 						{
 							"name": "user login",
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -325,6 +331,16 @@
 				{
 					"name": "add comment to user task by admin",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -356,6 +372,16 @@
 				{
 					"name": "add comment to user task by user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -387,6 +413,16 @@
 				{
 					"name": "editcomment to user task by user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -419,6 +455,16 @@
 				{
 					"name": "delete  comment by admin in task",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -442,6 +488,16 @@
 				{
 					"name": "update comment by admin in task",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -474,6 +530,16 @@
 				{
 					"name": "cretion comment by admin in task",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -552,6 +618,16 @@
 						{
 							"name": "add admin task1",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -582,6 +658,16 @@
 						{
 							"name": "add user task3",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -611,6 +697,16 @@
 						{
 							"name": "add user task4",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -640,6 +736,16 @@
 						{
 							"name": "add adimin task5",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -669,6 +775,16 @@
 						{
 							"name": "admiin task created in adm controller aaugnee adm",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -699,6 +815,16 @@
 						{
 							"name": "admiin task created in adm controller aaugnee usr",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -734,6 +860,16 @@
 						{
 							"name": "getAll by user by author",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -756,6 +892,16 @@
 						{
 							"name": "get user task by authorId and taskId",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -778,6 +924,16 @@
 						{
 							"name": "getAll tasks by user where he is assigneeI",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -799,6 +955,16 @@
 						{
 							"name": "getAll by assignee task admiin task created in adm controller assignee adm",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -823,6 +989,16 @@
 						{
 							"name": "getAll by author task created in adm controller",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -846,6 +1022,16 @@
 						{
 							"name": "getAll by author deleted tasks off in adm controller",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -867,6 +1053,16 @@
 						{
 							"name": "getAll by author deleted tasks only in adm controller",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -888,6 +1084,16 @@
 						{
 							"name": "getAkk task in db in admin controller",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -909,6 +1115,16 @@
 						{
 							"name": "get user task by taskId by admin in admin controller",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -936,6 +1152,16 @@
 						{
 							"name": "update user task",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -966,6 +1192,16 @@
 						{
 							"name": "admiin task update in adm controller aaugnee  usr",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -1003,6 +1239,16 @@
 						{
 							"name": "delete task by user",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
@@ -1025,6 +1271,16 @@
 						{
 							"name": "delete task by admin un adm controller",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTk0NjMzNSwiZXhwIjoxNzMxOTQ2OTM1fQ.E231aUmfM6D_Zh_7s_5cg1meI3_sLySnBFqtCHDxQQf4KpCG6Iyax2FWb6Evez7hGjkTOjcE5R4ZgPIvkGunJw",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {

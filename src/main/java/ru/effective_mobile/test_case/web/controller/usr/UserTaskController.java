@@ -1,5 +1,7 @@
 package ru.effective_mobile.test_case.web.controller.usr;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ import ru.effective_mobile.test_case.web.dto.responce.task.TaskUpdatedDtoShortRe
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Tag(name = "UserTaskController", description = "Контроллер предоставляющий ручки/handlers для взаимодействие с сущностью Task для USER и ADMIN")
 @Slf4j
 @Validated
 @RestController
@@ -36,6 +39,10 @@ public class UserTaskController {
 
     private final UserTaskService userService;
 
+    @Operation(
+            summary = "Получение всех записей задач (Task) по id автора (USER, ADMIN)",
+            description = "Позволяет получить все записи по id автора из БД, кроме удалённых (USER, ADMIN)"
+    )
     @GetMapping("/tasks/all/{authorId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskCreationDtoResponse> getListOfAllTasksCreatedByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
@@ -47,6 +54,10 @@ public class UserTaskController {
         return userService.getListOfAllTasksCreatedByAuthor(authorId, from, size);
     }
 
+    @Operation(
+            summary = "Получение записи задачи (Task) по id автора (USER, ADMIN)",
+            description = "Позволяет получить запись (Task) из БД по id автора, кроме удалённых (USER, ADMIN)"
+    )
     @GetMapping("/task/{authorId}/{taskId}")
     @ResponseStatus(HttpStatus.OK)
     public TaskDtoResponse getTaskCreatedByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
@@ -57,6 +68,10 @@ public class UserTaskController {
         return userService.getTaskCreatedByAuthor(authorId, taskId);
     }
 
+    @Operation(
+            summary = "Создание новой задачи (Task) (USER, ADMIN)",
+            description = "Позволяет создать новую (Task) задачу (USER, ADMIN)"
+    )
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
     public TaskCreationDtoResponse createTaskByAuthor(@Validated(Create.class)@RequestBody TaskCreationRequest createTask) {
@@ -66,6 +81,10 @@ public class UserTaskController {
         return userService.createTaskByAuthor(createTask);
     }
 
+    @Operation(
+            summary = "Изменение задачи (Task) по ее id (USER, ADMIN)",
+            description = "Позволяет изменить задачу (Task) по ее id (USER, ADMIN)"
+    )
     @PutMapping("/update/{taskId}")
     @ResponseStatus(HttpStatus.OK)
     public TaskUpdatedDtoResponse updateTaskByAuthor(@Positive @PathVariable(name = "taskId") Long taskId,
@@ -76,6 +95,10 @@ public class UserTaskController {
         return userService.updateTaskByAuthor(taskId, updateTask);
     }
 
+    @Operation(
+            summary = "Удаление задачи (Task) по ее id (USER, ADMIN)",
+            description = "Позволяет удалить задачу (Task) по ее id (USER, ADMIN)"
+    )
     @DeleteMapping("/delete/{authorId}/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public TaskCreationDtoResponse deleteTaskByAuthor(@Positive @PathVariable(name = "authorId") Long authorId,
@@ -86,6 +109,10 @@ public class UserTaskController {
         return userService.deleteTaskByAuthor(authorId, taskId);
     }
 
+    @Operation(
+            summary = "Получение всех записей задач (Task) по id исполнителя (USER, ADMIN)",
+            description = "Позволяет получить все записи по id исполнителя из БД, кроме удалённых (USER, ADMIN)"
+    )
     @GetMapping("/tasks/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskCreationDtoResponse> getListOfAllTasksAssignedToUser(@Positive @PathVariable(name = "assigneeId") Long assigneeId,

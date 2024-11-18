@@ -1,5 +1,7 @@
 package ru.effective_mobile.test_case.web.controller.post;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ import ru.effective_mobile.test_case.web.dto.request.post.CommentaryUpdateReques
 import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryFullUpdateResponseDto;
 import java.time.LocalDateTime;
 
+@Tag(name = "AdminCommentaryController", description = "Контроллер предоставляющий ручки/handlers для взаимодействие с сущностью Commentary для ADMIN")
 @Slf4j
 @Validated
 @RestController
@@ -30,6 +33,10 @@ public class AdminCommentaryController {
 
     private final AdminCommentaryService adminCommentaryService;
 
+    @Operation(
+            summary = "Добавление комментария (Commentary) к задаче (Task) по id задачи (ADMIN)",
+            description = "Позволяет оставить комментарий под задачей"
+    )
     @PostMapping("/create/{taskId}")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentaryFullUpdateResponseDto createPostByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
@@ -39,6 +46,11 @@ public class AdminCommentaryController {
                 .formatted(newCommentary, taskId) +  LocalDateTime.now() + "\n");
         return adminCommentaryService.createPostByAdmin(taskId, newCommentary);
     }
+
+    @Operation(
+            summary = "Изменение комментария (Commentary) к задаче (Task) по id задачи (ADMIN)",
+            description = "Позволяет изменить комментарий (Commentary) под задачей(Task) (ADMIN)"
+    )
     @PutMapping("/update/{taskId}/{commentaryId}")
     @ResponseStatus(HttpStatus.OK)
     public CommentaryFullUpdateResponseDto updatePostByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
@@ -50,6 +62,10 @@ public class AdminCommentaryController {
         return adminCommentaryService.updatePostByAdmin(taskId, commentaryId, updateCommentary);
     }
 
+    @Operation(
+            summary = "Удаление комментария (Commentary) по id и по id задачи (Task) (ADMIN)",
+            description = "Позволяет удалить комментарий под задачей (ADMIN)"
+    )
     @DeleteMapping("/delete/{taskId}/{commentaryId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public CommentaryFullUpdateResponseDto deleteCommentaryByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,

@@ -1,5 +1,7 @@
 package ru.effective_mobile.test_case.web.controller.adm;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ import ru.effective_mobile.test_case.utils.Update;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Tag(name = "AdminTaskController", description = "Контроллер предоставляющий ручки/handlers для взаимодействие с сущностью Task для ADMIN")
 @Slf4j
 @Validated
 @RestController
@@ -36,6 +39,10 @@ public class AdminTaskController {
 
     private final AdminTaskService adminService;
 
+    @Operation(
+            summary = "Получение всех записей задач (Task), в том числе удалённых (ADMIN)",
+            description = "Позволяет получить все записи из БД, включая удалённые (ADMIN)"
+    )
     @GetMapping("/all-whole-tasks")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
@@ -46,6 +53,10 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAdmin(from, size);
     }
 
+    @Operation(
+            summary = "Получение всех записей задач (Task), только удалённых (ADMIN)",
+            description = "Позволяет получить все записи из БД, только удалённые (ADMIN)"
+    )
     @GetMapping("/all-deleted-on-only")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOnly(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
@@ -56,6 +67,10 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAdminWithIsDeletedOnly(from, size);
     }
 
+    @Operation(
+            summary = "Получение всех записей задач (Task), кроме удалённых (ADMIN)",
+            description = "Позволяет получить все записи из БД, без удалённых (ADMIN)"
+    )
     @GetMapping("/all-deleted-off")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(@PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
@@ -66,6 +81,10 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAdminWithIsDeletedOff(from, size);
     }
 
+    @Operation(
+            summary = "Получение всех записей задач (Task) по id автора, в том числе удалённых (ADMIN)",
+            description = "Позволяет получить все записи по id автора из БД, включая удалённые (ADMIN)"
+    )
     @GetMapping("/all/author/{authorId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdmin(@Positive @PathVariable(name = "authorId") Long authorId,
@@ -77,6 +96,10 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAuthorIdByAdmin(authorId, from, size);
     }
 
+    @Operation(
+            summary = "Получение всех записей задач (Task) по id исполнителя, кроме удалённых (ADMIN)",
+            description = "Позволяет получить все записи по id исполнителя из БД, без удалённых (ADMIN)"
+    )
     @GetMapping("/all/assignee/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdmin(@Positive @PathVariable(name = "assigneeId") Long assigneeId,
@@ -88,6 +111,10 @@ public class AdminTaskController {
         return adminService.getAllTasksListByAssigneeIdByAdmin(assigneeId, from, size);
     }
 
+    @Operation(
+            summary = "Получение всех записей задач (Task) по id исполнителя, в том числе удалённых (ADMIN)",
+            description = "Позволяет получить все записи по id исполнителя из БД, включая удалённые (ADMIN)"
+    )
     @GetMapping("/tasks/assignee/{taskId}/{assigneeId}")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskUpdatedFullDtoResponse> getTasksByAssigneeIdByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
@@ -100,6 +127,10 @@ public class AdminTaskController {
         return adminService.getTasksByAssigneeIdByAdmin(taskId ,assigneeId, from, size);
     }
 
+    @Operation(
+            summary = "Получение записи задачи (Task) по id автора (ADMIN)",
+            description = "Позволяет получить запись (Task) из БД по id автора, кроме удалённых (ADMIN)"
+    )
     @GetMapping("/task/{taskId}")
     @ResponseStatus(HttpStatus.OK)
     public TaskDtoResponse getTaskByTaskIdByAdmin(@Positive @PathVariable(name = "taskId") Long taskId) {
@@ -109,6 +140,10 @@ public class AdminTaskController {
         return adminService.getTaskByTaskIdByAdmin(taskId);
     }
 
+    @Operation(
+            summary = "Создание новой задачи (Task) (ADMIN)",
+            description = "Позволяет создать новую (Task) задачу (ADMIN)"
+    )
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public TaskCreationDtoResponse createTaskByAdmin(@Validated(Create.class)@RequestBody TaskCreationRequest newTask) {
@@ -118,6 +153,10 @@ public class AdminTaskController {
         return adminService.createTaskByAdmin(newTask);
     }
 
+    @Operation(
+            summary = "Изменение задачи (Task) по ее id ( ADMIN)",
+            description = "Позволяет изменить задачу (Task) по ее id (ADMIN)"
+    )
     @PutMapping("/update/{taskId}/{authorId}")
     @ResponseStatus(HttpStatus.OK)
     public TaskUpdatedFullDtoResponse updateTaskByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,
@@ -129,6 +168,10 @@ public class AdminTaskController {
         return adminService.updateTaskByAdmin(taskId, authorId, updateTask);
     }
 
+    @Operation(
+            summary = "Удаление задачи (Task) по ее id (USER, ADMIN)",
+            description = "Позволяет удалить задачу (Task) по ее id (USER, ADMIN)"
+    )
     @DeleteMapping("/delete/{taskId}/{authorId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public TaskCreationDtoResponse deleteTaskByAdmin(@Positive @PathVariable(name = "taskId") Long taskId,

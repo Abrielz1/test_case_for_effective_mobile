@@ -3,6 +3,7 @@ package ru.effective_mobile.test_case.app.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.effective_mobile.test_case.app.entity.Commentary;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService {
 
@@ -33,6 +35,7 @@ public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService 
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public CommentaryShortUpdateResponseDto createPostByUser(Long taskId, CommentaryCreationRequest newCommentary) {
 
         User commentator = this.checkUserInByEmail(newCommentary.authorEmail());
@@ -46,6 +49,7 @@ public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService 
     }
 
     @Override
+    @Transactional
     public CommentaryShortUpdateResponseDto updatePostByUser(Long taskId, Long commentaryId, CommentaryUpdateRequestDto updateCommentary) {
 
         Commentary fromCommentFromDb = this.checkCommentInDb(taskId, commentaryId, updateCommentary.authorEmail());
