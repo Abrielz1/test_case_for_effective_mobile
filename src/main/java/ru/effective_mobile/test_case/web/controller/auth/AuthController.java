@@ -48,7 +48,7 @@ public class AuthController {
 
     @PostMapping("/logout")
     @ResponseStatus(HttpStatus.OK)
-    public String logoutOfCurrentAccount() { //@AuthenticationPrincipal UserDetails details
+    public String logoutOfCurrentAccount() {
         log.info("%nVia AuthController User logout from account at time:"
                 +  LocalDateTime.now() + "\n");
         securityService.logout();

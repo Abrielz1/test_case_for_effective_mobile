@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.effective_mobile.test_case.app.model.RefreshToken;
 import ru.effective_mobile.test_case.security.jwt.service.RefreshTokenService;
+import ru.effective_mobile.test_case.security.jwt.utils.JwtUtils;
 import ru.effective_mobile.test_case.security.repository.RefreshTokenRepository;
+import ru.effective_mobile.test_case.security.repository.SecurityRepository;
+import ru.effective_mobile.test_case.utils.exception.exceptions.ObjectNotFoundException;
 import ru.effective_mobile.test_case.utils.exception.exceptions.RefreshTokenException;
 import java.time.Duration;
 import java.time.Instant;
@@ -19,6 +22,10 @@ import java.util.UUID;
 public class RefreshTokenServiceImpl implements RefreshTokenService {
 
     private final RefreshTokenRepository refreshTokenRepository;
+
+    private final SecurityRepository securityRepository;
+
+    private final JwtUtils jwtUtils;
 
     @Value("${app.jwt.refreshTokenExpiration}")
     private Duration refreshTokenExpiration;
@@ -52,12 +59,18 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
     @Override
     public RefreshToken create(Long userId) {
 
+        var user = securityRepository.findUserById(userId).orElseThrow(()-> {
+            log.info("");
+            return new ObjectNotFoundException("");
+        });
+
         var refreshToken = RefreshToken
                 .builder()
                 .userId(userId)
                 .expiryDate(Instant.now().plusMillis(refreshTokenExpiration.toMillis()))
-                .token(UUID.randomUUID().toString())
+                .token(jwtUtils.generateTokenFromUserEmail(user.getEmail(), user))
                 .build();
+
 
         log.info("via RefreshTokenServiceImpl RefreshToken was reCreated : %s".formatted(refreshToken));
         return refreshTokenRepository.save(refreshToken);

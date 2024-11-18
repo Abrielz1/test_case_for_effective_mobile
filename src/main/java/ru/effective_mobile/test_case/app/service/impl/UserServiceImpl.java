@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
             userInDb.setPassword(updateUserAccountDto.password());
         }
 
-        if (!updateUserAccountDto.roles().isEmpty()) {
+        if (updateUserAccountDto.roles() != null) {
             Set<RoleType> roleTypeSet= new HashSet<>(updateUserAccountDto.roles());
             userInDb.setRoles(roleTypeSet);
         }
