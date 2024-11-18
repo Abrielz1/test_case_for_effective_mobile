@@ -1,0 +1,1053 @@
+{
+	"info": {
+		"_postman_id": "1619171f-3e51-40b1-b14b-70440acd73be",
+		"name": "Effective Mobile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24040827"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "Create Admin Account",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"arven11@mail.ru\",\r\n    \"password\": \"1234qwerty\",\r\n    \"roles\": [\r\n        \"ROLE_ADMIN\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"nene1190@mail.ru\",\r\n    \"password\" : \"1234qwerty\",\r\n    \"roles\" : [\r\n        \"ROLE_USER\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "manage",
+					"item": [
+						{
+							"name": "admin via admin user manage controller change user email",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTkzNzY2NCwiZXhwIjoxNzMxOTM4MjY0fQ._BS8Kg63c-KaUGiaOPbv9kFCAX319dFFM0vvkumY3bmuJjYIWjhuhkRBoeSXb1FvkKv1XdQ7nFCCx8jDToF32Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"ue@mail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/admins/users/update/user/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"users",
+										"update",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin via admin user manage controller  ban user acc",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTkzODAxMywiZXhwIjoxNzMxOTM4NjEzfQ.mjCVL8yE5T6NF2TZmRsHmOfVMZu60JaWutbhuH4Sodr-4wEenKXlKcr8XGfbGuQIIdFijJhTDce6V0p1SBbMNQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/users/ban/user/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"users",
+										"ban",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin via admin user manage controller  unban user acc",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTkzODAxMywiZXhwIjoxNzMxOTM4NjEzfQ.mjCVL8yE5T6NF2TZmRsHmOfVMZu60JaWutbhuH4Sodr-4wEenKXlKcr8XGfbGuQIIdFijJhTDce6V0p1SBbMNQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/users/unban/user/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"users",
+										"unban",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin via admin user manage controller  delete user acc",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTkzODcyMiwiZXhwIjoxNzMxOTM5MzIyfQ.WhrmJhGKKK9_bFD-Vhd5_OI1U_DSrUmA1KX9fBAkrkLqE7SbRxRfZlXrdFWgDYBTZorJhHrr0HyNMFbLF_2s7Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/users/delete/user/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"users",
+										"delete",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin via admin user manage controller  undelete user acc",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbjExQG1haWwucnUiLCJpZCI6MSwiZW1haWwiOiJhcnZlbjExQG1haWwucnUiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTczMTkzODcyMiwiZXhwIjoxNzMxOTM5MzIyfQ.WhrmJhGKKK9_bFD-Vhd5_OI1U_DSrUmA1KX9fBAkrkLqE7SbRxRfZlXrdFWgDYBTZorJhHrr0HyNMFbLF_2s7Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/users/undelete/user/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"users",
+										"undelete",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "admin login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"arven11@mail.ru\",\r\n    \"password\" : \"1234qwerty\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"nene1190@mail.ru\",\r\n    \"password\" : \"1234qwerty\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "add comment to user task by admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"commentaryHeader\" : \"flood\",\r\n    \"commentaryText\" : \"test test\",\r\n    \"authorEmail\" : \"arven11@mail.ru\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admins/commentaries/create/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admins",
+								"commentaries",
+								"create",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add comment to user task by user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentaryHeader\" : \"1st comm\",\r\n    \"commentaryText\" : \"my first test comm\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/commentaries/create/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"commentaries",
+								"create",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editcomment to user task by user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"commentaryHeader\" : \"1st comm\",\r\n  \"commentaryText\" : \"my blah blah\",\r\n  \"authorEmail\" : \"nene1190@mail.ru\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/commentaries/update/7/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"commentaries",
+								"update",
+								"7",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete  comment by admin in task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admins/commentaries/delete/2/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admins",
+								"commentaries",
+								"delete",
+								"2",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update comment by admin in task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentaryHeader\" : \"oops\",\r\n    \"commentaryText\" : \"opps... nothing here foe now\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admins/commentaries/update/2/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admins",
+								"commentaries",
+								"update",
+								"2",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cretion comment by admin in task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentaryHeader\" : \"ny desember\",\r\n    \"commentaryText\" : \"under my skin\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admins/commentaries/create/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admins",
+								"commentaries",
+								"create",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "add",
+					"item": [
+						{
+							"name": "add user task2",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuZW5lMTE5MEBtYWlsLnJ1IiwiaWQiOjIsImVtYWlsIjoibmVuZTExOTBAbWFpbC5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MzE5Mzg4NzcsImV4cCI6MTczMTkzOTQ3N30.1iBLWMTp1gtD1BFfD6GC9WgrgnQR6wwnHchs2OTyoz_te17Fw-Hl9-2HMg06SWIWoCt1NeTTqmRmJCGjCGTFnQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task2\",\r\n    \"description\" : \"task created by user\",\r\n    \"status\" : \"WAITING\",\r\n    \"priority\" : \"LOW\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\",\r\n    \"assigneeEmail\" : \"nene1190@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add admin task1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task1\",\r\n    \"description\" : \"task created by admin\",\r\n    \"status\" : \"WAITING\",\r\n    \"priority\" : \"LOW\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\",\r\n    \"assigneeEmail\" : \"arven11@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add user task3",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task3\",\r\n    \"description\" : \"task created by user\",\r\n    \"status\" : \"IN_PROCESS\",\r\n    \"priority\" : \"MEDIUM\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\",\r\n    \"assigneeEmail\" : \"arven11@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add user task4",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task4\",\r\n    \"description\" : \"task created by user4\",\r\n    \"status\" : \"COMPLETED\",\r\n    \"priority\" : \"HIGH\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\",\r\n    \"assigneeEmail\" : \"arven11@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add adimin task5",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task5\",\r\n    \"description\" : \"task created by user5\",\r\n    \"status\" : \"WAITING\",\r\n    \"priority\" : \"HIGH\",\r\n    \"authorEmail\" : \"arven11@mail.ru\",\r\n    \"assigneeEmail\" : \"arven11@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admiin task created in adm controller aaugnee adm",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task7\",\r\n    \"description\" : \"task created byAdmin at Adm Controller\",\r\n    \"status\" : \"IN_PROCESS\",\r\n    \"priority\" : \"MEDIUM\",\r\n    \"authorEmail\" : \"arven11@mail.ru\",\r\n    \"assigneeEmail\" : \"arven11@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admiin task created in adm controller aaugnee usr",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"header\" : \"task6\",\r\n    \"description\" : \"task created byAdmin at Adm Controller\",\r\n    \"status\" : \"IN_PROCESS\",\r\n    \"priority\" : \"MEDIUM\",\r\n    \"authorEmail\" : \"arven11@mail.ru\",\r\n    \"assigneeEmail\" : \"nene1190@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get",
+					"item": [
+						{
+							"name": "getAll by user by author",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/users/tasks/all/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"tasks",
+										"all",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get user task by authorId and taskId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/users/task/2/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"task",
+										"2",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll tasks by user where he is assigneeI",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/users/tasks/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"tasks",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll by assignee task admiin task created in adm controller assignee adm",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/tasks/assignee/6/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"tasks",
+										"assignee",
+										"6",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll by author task created in adm controller",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/all/author/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"all",
+										"author",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll by author deleted tasks off in adm controller",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/all-deleted-off",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"all-deleted-off"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll by author deleted tasks only in adm controller",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/all-deleted-on-only",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"all-deleted-on-only"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAkk task in db in admin controller",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/all-whole-tasks",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"all-whole-tasks"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get user task by taskId by admin in admin controller",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/task/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"task",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update user task",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newStatus\" : \"IN_PROCESS\",\r\n    \"authorEmail\" : \"nene1190@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/update/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admiin task update in adm controller aaugnee  usr",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"updateStatus\" : \"IN_PROCESS\",\r\n    \"priorityStatus\" : \"HIGH\",\r\n    \"assigneeEmail\" : \"nene1190@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/update/6/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"update",
+										"6",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"item": [
+						{
+							"name": "delete task by user",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/users/delete/2/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"delete",
+										"2",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete task by admin un adm controller",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/admins/tasks/delete/6/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"tasks",
+										"delete",
+										"6",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
