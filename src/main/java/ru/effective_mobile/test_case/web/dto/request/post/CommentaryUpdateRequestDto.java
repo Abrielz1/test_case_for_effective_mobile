@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record CommentaryUpdateRequestDto(@Schema(description = "Header commentary/Заголовок комментария")
-                                         @NotBlank
                                          String commentaryHeader,
 
                                          @Schema(description = "Text commentary/Текст комментария")
