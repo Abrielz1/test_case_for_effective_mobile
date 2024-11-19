@@ -43,6 +43,7 @@ public class TaskMapper {
 
         return new TaskCreationDtoResponse(task.getId(),
                                            task.getTaskHeader(),
+                                           task.getTaskDescription(),
                                            task.getTaskStatus(),
                                            task.getTaskPriority(),
                                            UserMapper.toUserResponseDto(task.getAuthor()),

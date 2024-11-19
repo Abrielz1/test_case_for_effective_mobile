@@ -3,6 +3,7 @@ package ru.effective_mobile.test_case.app.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.app.model.enums.RoleType;
 import ru.effective_mobile.test_case.app.repository.UserRepository;
@@ -17,6 +18,7 @@ import java.util.Set;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserResponseFullDto editUserAccountByAdmin(Long userId, UpdateUserAccountRequestDto updateAccountDto) {
 
         log.info(("%nVia AdminUserService User account was updated by Admin with userId %d" +
@@ -36,6 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseFullDto banUserAccount(Long userId) {
 
         User userFromDb = this.checkUserInDb(userId);
@@ -48,6 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseFullDto unbanUserAccount(Long userId) {
 
         User userFromDb = this.checkUserInDb(userId);
@@ -60,6 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseFullDto deleteUserAccount(Long userId) {
 
         User userFromDb = this.checkUserInDb(userId);
@@ -72,6 +78,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseFullDto undeleteUserAccount(Long userId) {
 
         User userFromDb = this.checkUserInDb(userId);
@@ -106,7 +113,7 @@ public class UserServiceImpl implements UserService {
             userInDb.setPassword(updateUserAccountDto.password());
         }
 
-        if (!updateUserAccountDto.roles().isEmpty()) {
+        if (updateUserAccountDto.roles() != null) {
             Set<RoleType> roleTypeSet= new HashSet<>(updateUserAccountDto.roles());
             userInDb.setRoles(roleTypeSet);
         }

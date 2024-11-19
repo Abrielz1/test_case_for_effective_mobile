@@ -2,6 +2,9 @@ package ru.effective_mobile.test_case.security.jwt.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,12 +24,15 @@ import ru.effective_mobile.test_case.web.dto.responce.account.UserResponseDto;
 import ru.effective_mobile.test_case.web.dto.responce.security.LoginDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.security.RefreshTokenDtoResponse;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class SecurityServiceImpl implements SecurityService {
+
+    private final AuthenticationManager authenticationManager;
 
     private final SecurityRepository securityRepository;
 
@@ -35,6 +41,8 @@ public class SecurityServiceImpl implements SecurityService {
     private final JwtUtils jwtUtils;
 
     private final PasswordEncoder passwordEncoder;
+
+    private static final String TEXT = " at time: ";
 
     @Override
     public UserResponseDto registerUserAccount(CreateAccountRequest newUser) {
@@ -54,13 +62,42 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public LoginDtoResponse loginIntoAccount(LoginRequest loginRequest) {
-        return null;
+
+        var authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(
+                        loginRequest.email(),
+                        loginRequest.password()
+                ));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        var userDetails = (AppUserDetails) authentication.getPrincipal();
+
+        List<String> roles = userDetails.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+
+        var refreshToken = refreshTokenService.create(userDetails.getId());
+
+        var token = refreshToken.getToken();
+
+        log.info("via SecurityServiceImpl user session begins with account: %s".formatted(userDetails) +
+                TEXT + LocalDateTime.now());
+        return new LoginDtoResponse(userDetails.getId(),
+                                    userDetails.getUsername(),
+                                    roles,
+                                    token);
     }
 
     @Override
     public void logout() {
+
         var currentPrincipal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         if (currentPrincipal instanceof AppUserDetails userDetails) {
+            log.info("via SecurityServiceImpl user session has ended with account: %s".formatted(currentPrincipal)
+                    + TEXT + LocalDateTime.now());
             refreshTokenService.deleteByUserId(userDetails.getId());
         }
     }
@@ -70,6 +107,9 @@ public class SecurityServiceImpl implements SecurityService {
 
         String requestTokenRefresh = request.refreshToken();
 
+        log.info(("via SecurityServiceImpl RefreshToken has refreshed" +
+                " with RefreshTokenRequest: %s").formatted(request)
+                + TEXT + LocalDateTime.now());
         return refreshTokenService.getByRefreshToken(requestTokenRefresh)
                 .map(refreshTokenService::checkRefreshToken)
                 .map(RefreshToken::getId)
@@ -80,7 +120,8 @@ public class SecurityServiceImpl implements SecurityService {
                         return new RefreshTokenException("Exception for userId: %d".formatted(userid));
                     });
 
-                    String token = jwtUtils.generateTokenFromUserName(user.getEmail());
+                    String token = jwtUtils.generateTokenFromUserEmail(user.getEmail(), user);
+
                     return new RefreshTokenDtoResponse(token, refreshTokenService.create(userid).getToken());
                 }).orElseThrow(() -> new RefreshTokenException("RefreshToken is not found!"));
     }

@@ -30,6 +30,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Класс описывающий сущность пользователь (User)
+ */
+
 @Table(name = "users")
 @Entity
 @Setter
@@ -40,39 +44,66 @@ import java.util.Set;
 @AllArgsConstructor
 public class User implements Serializable {
 
+    /**
+     * id пользователя
+     */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * электронная почта
+     */
     @Column(name = "email", nullable = false, columnDefinition = "VARCHAR(32)", unique = true)
     private String email;
 
+    /**
+     * пароль
+     */
     @Column(name = "password", nullable = false, columnDefinition = "VARCHAR(1024)")
     private String password;
 
+    /**
+     * флаг удалён/deleted ли пользователь
+     */
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
+    /**
+     * флаг забанен/заблокирован ли пользователь
+     */
     @Column(name = "is_banned")
     private Boolean isBanned;
 
+    /**
+     * задачи созданные пользователем
+     */
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
     private List<Task> tasksCreatedByUser = new ArrayList<>();
 
+    /**
+     * задачи назначенные пользователю
+     */
     @OneToMany(mappedBy = "assignee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
     private List<Task> tasksAssignedToUser = new ArrayList<>();
 
+    /**
+     * комментарии пользователя к задачам
+     */
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Commentary> commentaryList = new ArrayList<>();
 
+    /**
+     * роли пользователя на сервере ADMIN/USER
+     */
     @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "roles",nullable = false)

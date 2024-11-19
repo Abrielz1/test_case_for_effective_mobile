@@ -1,5 +1,7 @@
 package ru.effective_mobile.test_case.web.controller.auth;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import ru.effective_mobile.test_case.web.dto.responce.security.LoginDtoResponse;
 import ru.effective_mobile.test_case.web.dto.responce.security.RefreshTokenDtoResponse;
 import java.time.LocalDateTime;
 
+@Tag(name = "AuthenticationController", description = "Контроллер регистрации/авторизации")
 @Slf4j
 @Validated
 @RestController
@@ -28,6 +31,10 @@ public class AuthController {
 
     private final SecurityService securityService;
 
+    @Operation(
+            summary = "Регистрация пользователя",
+            description = "Позволяет зарегистрировать пользователя"
+    )
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponseDto registerUserAccount(@Validated(Create.class) @RequestBody CreateAccountRequest newUser) {
@@ -37,6 +44,10 @@ public class AuthController {
         return securityService.registerUserAccount(newUser);
     }
 
+    @Operation(
+            summary = "Авторизация/Логин/Вход в учётную запись пользователя",
+            description = "Позволяет авторизовать пользователя"
+    )
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public LoginDtoResponse loginIntoAccount(@RequestBody LoginRequest loginRequest) {
@@ -46,15 +57,23 @@ public class AuthController {
         return securityService.loginIntoAccount(loginRequest);
     }
 
+    @Operation(
+            summary = "ДеАвторизация/ЛогАут/Выход из учётной записи пользователя",
+            description = "Позволяет окончить сессию пользователя"
+    )
     @PostMapping("/logout")
     @ResponseStatus(HttpStatus.OK)
-    public String logoutOfCurrentAccount() { //@AuthenticationPrincipal UserDetails details
+    public String logoutOfCurrentAccount() {
         log.info("%nVia AuthController User logout from account at time:"
                 +  LocalDateTime.now() + "\n");
         securityService.logout();
         return "";
     }
 
+    @Operation(
+            summary = "Обновление токена авторизации пользователя",
+            description = "Позволяет обновить сессию без перелогинивания пользователя"
+    )
     @PostMapping("/refresh-token")
     @ResponseStatus(HttpStatus.OK)
     public RefreshTokenDtoResponse refreshTokenRefresh(@RequestBody RefreshTokenRequest request) {

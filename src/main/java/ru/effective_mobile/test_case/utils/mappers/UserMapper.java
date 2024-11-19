@@ -34,6 +34,8 @@ public class UserMapper {
                 .builder()
                 .email(newUser.email())
                 .password(passwordEncoder.encode(newUser.password()))
+                .isBanned(false)
+                .isDeleted(false)
                 .roles(set)
                 .build();
     }

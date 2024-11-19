@@ -1,5 +1,7 @@
 package ru.effective_mobile.test_case.web.controller.post;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ import ru.effective_mobile.test_case.web.dto.request.post.CommentaryUpdateReques
 import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryShortUpdateResponseDto;
 import java.time.LocalDateTime;
 
+@Tag(name = "UserCommentaryTaskController", description = "Контроллер предоставляющий ручки/handlers для взаимодействие с сущностью Commentary для USER и ADMIN")
 @Slf4j
 @Validated
 @RestController
@@ -29,6 +32,10 @@ public class UserCommentaryTaskController {
 
     private final UserCommentaryTaskService commentaryService;
 
+    @Operation(
+            summary = "Добавление комментария (Commentary) к задаче (Task) по id задачи (USER, ADMIN)",
+            description = "Позволяет оставить комментарий под задачей"
+    )
     @PostMapping("/create/{taskId}")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentaryShortUpdateResponseDto createPostByUser(@Positive @PathVariable(name = "taskId") Long taskId,
@@ -39,6 +46,10 @@ public class UserCommentaryTaskController {
         return commentaryService.createPostByUser(taskId, newCommentary);
     }
 
+    @Operation(
+            summary = "Изменение комментария (Commentary) к задаче (Task) по id задачи",
+            description = "Позволяет изменить комментарий (Commentary) под задачей(Task) (USER, ADMIN)"
+    )
     @PutMapping("/update/{taskId}/{commentaryId}")
     @ResponseStatus(HttpStatus.OK)
     public CommentaryShortUpdateResponseDto updatePostByUser(@Positive @PathVariable(name = "taskId") Long taskId,

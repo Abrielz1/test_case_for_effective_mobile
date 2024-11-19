@@ -8,7 +8,6 @@ import ru.effective_mobile.test_case.app.entity.User;
 import java.util.Collection;
 
 @RequiredArgsConstructor
-
 public class AppUserDetails implements UserDetails {
 
     private final User user;

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
 import ru.effective_mobile.test_case.app.repository.TaskRepository;
@@ -24,6 +25,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserTaskServiceImpl implements UserTaskService {
 
@@ -65,6 +67,7 @@ public class UserTaskServiceImpl implements UserTaskService {
     }
 
     @Override
+    @Transactional
     public TaskCreationDtoResponse createTaskByAuthor(TaskCreationRequest createTask) {
 
         User author = this.checkUserInByEmail(createTask.authorEmail());
@@ -80,6 +83,7 @@ public class UserTaskServiceImpl implements UserTaskService {
     }
 
     @Override
+    @Transactional
     public TaskUpdatedDtoResponse updateTaskByAuthor(Long taskId, TaskUpdatedDtoShortRequest updateTask) {
 
         Task taskFromDb = this.checkTaskById(taskId);
@@ -99,6 +103,7 @@ public class UserTaskServiceImpl implements UserTaskService {
     }
 
     @Override
+    @Transactional
     public TaskCreationDtoResponse deleteTaskByAuthor(Long authorId, Long taskId) {
 
         Task taskFromDb = this.checkTaskById(taskId);

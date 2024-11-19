@@ -1,4 +1,7 @@
 package ru.effective_mobile.test_case.web.dto.responce.account;
 
-public record UserResponseDto(String email) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record UserResponseDto(@Schema(description = "Email user/Почта пользователя")
+                              String email) {
 }

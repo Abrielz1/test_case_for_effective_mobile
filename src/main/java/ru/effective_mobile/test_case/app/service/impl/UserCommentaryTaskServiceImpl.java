@@ -39,8 +39,8 @@ public class UserCommentaryTaskServiceImpl implements UserCommentaryTaskService 
         Task taskToComment = this.checkTaskInDb(taskId);
         Commentary newComment = CommentaryMappers.toCommentary(newCommentary, taskToComment, commentator);
 
-        log.info("%nVia Commentary Service Post was created post by User with email: %s in to task %s with id %d at time:"
-                .formatted(newComment.getUser().getEmail(), newComment, taskId) +  LocalDateTime.now() + "\n");
+        log.info("%nVia Commentary Service Post was created post by User with email: %s in to task with id %d at time:"
+                .formatted(newComment.getUser().getEmail(), taskId) +  LocalDateTime.now() + "\n");
 
         return CommentaryMappers.toCommentaryShortUpdateResponseDto(commentaryRepository.saveAndFlush(newComment));
     }

@@ -11,21 +11,23 @@ public interface AdminTaskService {
 
     List<TaskUpdatedFullDtoResponse> getAllTasksListByAdmin(Integer from, Integer size);
 
-    List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(Integer from, Integer size);
-
     List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOnly(Integer from, Integer size);
 
-    List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdmin(Long authorId, Integer from, Integer size);
+    List<TaskUpdatedFullDtoResponse> getAllTasksListByAdminWithIsDeletedOff(Integer from, Integer size);
 
-    List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdmin(Long assigneeId, Integer from, Integer size);
+    List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdminWithoutDeletedTasks(Long authorId, Integer from, Integer size);
 
-    List<TaskUpdatedFullDtoResponse> getTasksByAssigneeIdByAdmin(Long taskId, Long assigneeId, Integer from, Integer size);
+    List<TaskUpdatedFullDtoResponse> getAllTasksListByAuthorIdByAdminWithDeleted(Long authorId, Integer from, Integer size);
+
+    List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdminWithoutDeleted(Long assigneeId, Integer from, Integer size);
+
+    List<TaskUpdatedFullDtoResponse> getAllTasksListByAssigneeIdByAdminWithDeleted(Long assigneeId, Integer from, Integer size);
+
+    TaskDtoResponse getTaskByTaskIdByAdmin(Long taskId);
 
     TaskCreationDtoResponse createTaskByAdmin(TaskCreationRequest newTask);
 
     TaskUpdatedFullDtoResponse updateTaskByAdmin(Long taskId, Long authorId, TaskUpdatedDtoRequest updateTask);
 
     TaskCreationDtoResponse deleteTaskByAdmin(Long taskId, Long authorId);
-
-    TaskDtoResponse getTaskByTaskIdByAdmin(Long taskId);
 }
