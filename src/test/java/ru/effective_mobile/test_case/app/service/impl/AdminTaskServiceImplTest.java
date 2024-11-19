@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -46,14 +45,6 @@ class AdminTaskServiceImplTest {
     @InjectMocks
     private AdminTaskServiceImpl adminTaskService;
 
-    private TaskUpdatedFullDtoResponse taskUpdatedFullDtoResponse;
-
-    private TaskDtoResponse taskDtoResponse;
-
-    private TaskCreationRequest newTask;
-
-    private TaskUpdatedDtoRequest updateTask;
-
     private User user;
 
     private User admin;
@@ -61,8 +52,6 @@ class AdminTaskServiceImplTest {
     private Commentary commentary1;
 
     private Commentary commentary2;
-
-    private Commentary commentary3;
 
     private Task task1;
 
@@ -165,17 +154,6 @@ class AdminTaskServiceImplTest {
                 .user(admin)
                 .task(task1)
                 .build();
-
-        commentary3 = Commentary
-                .builder()
-                .id(3L)
-                .commentaryHeader("comm3")
-                .commentaryText("opps!1")
-                .creationDate(LocalDateTime.now())
-                .isDeleted(true)
-                .user(admin)
-                .task(task1)
-                .build();
     }
 
     @Test
@@ -189,7 +167,8 @@ class AdminTaskServiceImplTest {
         tasks.add(task2);
         tasks.add(task3);
 
-        when(taskRepository.findAll(any(PageRequest.class))).thenReturn((new PageImpl<>(tasks)));
+        when(taskRepository.findAll(any(PageRequest.class)))
+                .thenReturn((new PageImpl<>(tasks)));
 
         List<TaskUpdatedFullDtoResponse> list = adminTaskService.getAllTasksListByAdmin(from, size);
 
@@ -208,7 +187,8 @@ class AdminTaskServiceImplTest {
         tasks.add(task1);
         tasks.add(task2);
 
-        when(taskRepository.findAll(any(PageRequest.class))).thenReturn((new PageImpl<>(tasks)));
+        when(taskRepository.findAll(any(PageRequest.class)))
+                .thenReturn((new PageImpl<>(tasks)));
 
         List<TaskUpdatedFullDtoResponse> list = adminTaskService.getAllTasksListByAdminWithIsDeletedOff(from, size);
 
@@ -225,7 +205,8 @@ class AdminTaskServiceImplTest {
         List<Task> tasks = new ArrayList<>();
         tasks.add(task3);
 
-        when(taskRepository.findAll(any(PageRequest.class))).thenReturn((new PageImpl<>(tasks)));
+        when(taskRepository.findAll(any(PageRequest.class)))
+                .thenReturn((new PageImpl<>(tasks)));
 
         List<TaskUpdatedFullDtoResponse> list = adminTaskService.getAllTasksListByAdminWithIsDeletedOnly(from, size);
 
@@ -245,7 +226,8 @@ class AdminTaskServiceImplTest {
         tasks.add(task2);
         tasks.add(task3);
 
-        when(taskRepository.findAllByAuthor_Id(anyLong(), any())).thenReturn(tasks);
+        when(taskRepository.findAllByAuthor_Id(anyLong(), any()))
+                .thenReturn(tasks);
 
         List<TaskUpdatedFullDtoResponse> list = adminTaskService.getAllTasksListByAuthorIdByAdminWithDeleted(2L, from, size);
 
@@ -265,7 +247,8 @@ class AdminTaskServiceImplTest {
         tasks.add(task2);
         tasks.add(task3);
 
-        when(taskRepository.findAllByAuthor_Id(anyLong(), any())).thenReturn(tasks);
+        when(taskRepository.findAllByAuthor_Id(anyLong(), any())).
+                thenReturn(tasks);
 
         List<TaskUpdatedFullDtoResponse> list = adminTaskService.getAllTasksListByAuthorIdByAdminWithoutDeletedTasks(2L, from, size);
 
@@ -284,7 +267,8 @@ class AdminTaskServiceImplTest {
         tasks.add(task2);
         tasks.add(task3);
 
-        when(taskRepository.findAllByAssignee_Id(anyLong(), any())).thenReturn(tasks);
+        when(taskRepository.findAllByAssignee_Id(anyLong(), any()))
+                .thenReturn(tasks);
 
         List<TaskUpdatedFullDtoResponse> list = adminTaskService.getAllTasksListByAssigneeIdByAdminWithoutDeleted(1L, from, size);
 
@@ -322,9 +306,10 @@ class AdminTaskServiceImplTest {
 
         task1.setComments(list);
 
-        when(taskRepository.findTaskById(anyLong())).thenReturn(Optional.ofNullable(task1));
+        when(taskRepository.findTaskById(anyLong()))
+                .thenReturn(Optional.ofNullable(task1));
 
-        taskDtoResponse = adminTaskService.getTaskByTaskIdByAdmin(1L);
+        TaskDtoResponse taskDtoResponse = adminTaskService.getTaskByTaskIdByAdmin(1L);
 
         assertEquals(taskDtoResponse.header(), task1.getTaskHeader(), "value: oops1");
     }
@@ -333,10 +318,14 @@ class AdminTaskServiceImplTest {
     @DisplayName("createTaskByAdmin")
     void When_createTaskByAdmin_ThenGetHeader() {
 
-        newTask = new TaskCreationRequest("1", "1", TaskStatus.IN_PROCESS, Priorities.LOW, user.getEmail(), admin.getEmail());
-        when(userRepository.getUserByMail(anyString())).thenReturn(Optional.ofNullable(user));
-        when(userRepository.getUserByMail(anyString())).thenReturn(Optional.ofNullable(admin));
-        when(taskRepository.saveAndFlush(any(Task.class))).thenReturn(task1);
+        TaskCreationRequest newTask = new TaskCreationRequest("1", "1", TaskStatus.IN_PROCESS, Priorities.LOW, user.getEmail(), admin.getEmail());
+
+        when(userRepository.getUserByMail(anyString()))
+                .thenReturn(Optional.ofNullable(user));
+        when(userRepository.getUserByMail(anyString()))
+                .thenReturn(Optional.ofNullable(admin));
+        when(taskRepository.saveAndFlush(any(Task.class))).
+                thenReturn(task1);
 
         TaskCreationDtoResponse taskCreationDtoResponse = adminTaskService.createTaskByAdmin(newTask);
 
@@ -347,12 +336,15 @@ class AdminTaskServiceImplTest {
     @DisplayName("updateTaskByAdmin")
     void When_updateTaskByAdmin_Then() {
 
-        when(userRepository.getUserByMail(anyString())).thenReturn(Optional.ofNullable(user));
-        when(taskRepository.findTaskById(anyLong())).thenReturn(Optional.ofNullable(task1));
-        when(taskRepository.saveAndFlush(any(Task.class))).thenReturn(task1);
+        when(userRepository.getUserByMail(anyString()))
+                .thenReturn(Optional.ofNullable(user));
+        when(taskRepository.findTaskById(anyLong()))
+                .thenReturn(Optional.ofNullable(task1));
+        when(taskRepository.saveAndFlush(any(Task.class)))
+                .thenReturn(task1);
 
-        updateTask = new TaskUpdatedDtoRequest(TaskStatus.COMPLETED ,null, user.getEmail());
-        taskUpdatedFullDtoResponse = adminTaskService.updateTaskByAdmin(1L, 2L, updateTask);
+        TaskUpdatedDtoRequest updateTask = new TaskUpdatedDtoRequest(TaskStatus.COMPLETED, null, user.getEmail());
+        TaskUpdatedFullDtoResponse taskUpdatedFullDtoResponse = adminTaskService.updateTaskByAdmin(1L, 2L, updateTask);
 
         assertEquals(taskUpdatedFullDtoResponse.header(), task1.getTaskHeader(), "value: oops1");
     }
@@ -361,8 +353,11 @@ class AdminTaskServiceImplTest {
     @DisplayName("deleteTaskByAdmin")
     void When_deleteTaskByAdmin_Then() {
 
-        when(taskRepository.findTaskByIdAndAuthor_Id(anyLong(), anyLong())).thenReturn(Optional.ofNullable(task1));
-        when(taskRepository.saveAndFlush(any(Task.class))).thenReturn(task1);
+        when(taskRepository.findTaskByIdAndAuthor_Id(anyLong(), anyLong()))
+                .thenReturn(Optional.ofNullable(task1));
+        when(taskRepository.saveAndFlush(any(Task.class)))
+                .thenReturn(task1);
+
         TaskCreationDtoResponse taskCreationDtoResponse = adminTaskService.deleteTaskByAdmin(1L, 2L);
 
         assertEquals(taskCreationDtoResponse.description(), task1.getTaskDescription(), "value: oops1");

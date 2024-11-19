@@ -2,8 +2,10 @@ package ru.effective_mobile.test_case.app.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.effective_mobile.test_case.app.entity.Commentary;
 import ru.effective_mobile.test_case.app.entity.Task;
 import ru.effective_mobile.test_case.app.entity.User;
@@ -14,14 +16,20 @@ import ru.effective_mobile.test_case.app.repository.CommentaryTaskRepository;
 import ru.effective_mobile.test_case.app.repository.TaskRepository;
 import ru.effective_mobile.test_case.app.repository.UserRepository;
 import ru.effective_mobile.test_case.web.dto.request.post.CommentaryCreationRequest;
-import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryShortUpdateResponseDto;
+import ru.effective_mobile.test_case.web.dto.request.post.CommentaryUpdateRequestDto;
+import ru.effective_mobile.test_case.web.dto.responce.post.CommentaryFullUpdateResponseDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
+import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class AdminCommentaryServiceImplTest {
 
     @Mock
@@ -34,19 +42,13 @@ class AdminCommentaryServiceImplTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserCommentaryTaskServiceImpl userCommentaryTaskService;
+    private AdminCommentaryServiceImpl adminCommentaryServiceImpl;
 
     User commentatorAdmin1;
 
     User commentatorUser1;
 
-    User commentatorUser2;
-
     Task taskToComment1;
-
-    Task taskToComment2;
-
-    Task taskToComment3;
 
     Commentary newComment1;
 
@@ -54,25 +56,12 @@ class AdminCommentaryServiceImplTest {
 
     Commentary newComment3;
 
-    Commentary newComment4;
-
-    Commentary newComment5;
-
-    Commentary newComment6;
-
-    Commentary newComment7;
-
-    CommentaryShortUpdateResponseDto commentaryShortUpdateResponseDto1;
-
-    CommentaryShortUpdateResponseDto commentaryShortUpdateResponseDto2;
-
-    CommentaryShortUpdateResponseDto commentaryShortUpdateResponseDto3;
+    CommentaryFullUpdateResponseDto commentaryFullUpdateResponseDto;
 
     CommentaryCreationRequest newCommentary1;
 
-    CommentaryCreationRequest newCommentary2;
+    CommentaryUpdateRequestDto updateCommentary1;
 
-    CommentaryCreationRequest newCommentary3;
 
     @BeforeEach
     void setUp() {
@@ -158,13 +147,58 @@ class AdminCommentaryServiceImplTest {
 
     @Test
     void createPostByAdmin() {
+
+        when(taskRepository.findTaskById(anyLong()))
+                .thenReturn(Optional.ofNullable(taskToComment1));
+
+        when(userRepository.getUserByMail(anyString()))
+                .thenReturn(Optional.ofNullable(commentatorUser1));
+
+        when(commentaryRepository.saveAndFlush(any(Commentary.class)))
+                .thenReturn(newComment1);
+
+        newCommentary1 = new CommentaryCreationRequest("comm1",
+                "text1",
+                "user@mail.com");
+
+        commentaryFullUpdateResponseDto = adminCommentaryServiceImpl.createPostByAdmin(1L, newCommentary1);
+        assertEquals(commentaryFullUpdateResponseDto.commentaryHeader(), newComment1.getCommentaryHeader(),
+                "value: comm1");
     }
 
     @Test
     void updatePostByAdmin() {
+
+        when(commentaryRepository.findCommentaryByTask_IdAndId(anyLong(), anyLong()))
+                .thenReturn(Optional.ofNullable(newComment1));
+
+        when(commentaryRepository.saveAndFlush(any(Commentary.class)))
+                .thenReturn(newComment1);
+
+        updateCommentary1 = new CommentaryUpdateRequestDto(null,
+                                                                "text",
+                                                                null);
+
+        commentaryFullUpdateResponseDto = adminCommentaryServiceImpl.updatePostByAdmin(1L,
+                                                                                 1L,
+                                                                                 updateCommentary1);
+
+        assertEquals(commentaryFullUpdateResponseDto.commentaryHeader(), newComment1.getCommentaryHeader(),
+                "value: comm");
     }
 
     @Test
     void deleteCommentaryByAdmin() {
+
+        when(commentaryRepository.findCommentaryByTask_IdAndId(anyLong(), anyLong()))
+                .thenReturn(Optional.ofNullable(newComment1));
+
+        when(commentaryRepository.saveAndFlush(any(Commentary.class)))
+                .thenReturn(newComment1);
+
+        commentaryFullUpdateResponseDto = adminCommentaryServiceImpl.deleteCommentaryByAdmin(1L, 1L);
+
+        assertEquals(commentaryFullUpdateResponseDto.commentaryHeader(), newComment1.getCommentaryHeader(),
+                "value: comm");
     }
 }

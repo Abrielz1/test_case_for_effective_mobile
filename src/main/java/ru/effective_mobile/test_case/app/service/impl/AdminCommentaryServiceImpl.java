@@ -105,7 +105,7 @@ public class AdminCommentaryServiceImpl implements AdminCommentaryService {
     private Commentary checkCommentInDb(Long taskId, Long commentaryId) {
         log.info("%nVia UserCommentService taskId: %d and commentaryId: %d was found".formatted(taskId, commentaryId));
 
-        return commentaryTaskRepository.findCommentaryByTask_IdAndId(taskId, commentaryId).orElseThrow(() -> {
+    return commentaryTaskRepository.findCommentaryByTask_IdAndId(taskId, commentaryId).orElseThrow(() -> {
 
             log.info("%nVia UserService taskId: %d and commentaryId: %d not found".formatted(taskId, commentaryId));
             return new ObjectNotFoundException("Via UserCommentService commentary was not found");

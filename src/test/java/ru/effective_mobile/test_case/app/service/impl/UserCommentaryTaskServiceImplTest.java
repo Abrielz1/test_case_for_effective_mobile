@@ -166,12 +166,6 @@ class UserCommentaryTaskServiceImplTest {
 
         newComment1.setUser(commentatorUser1);
 
-
-        List<Commentary> list = new ArrayList<>();
-        list.add(newComment1);
-
-        taskToComment1.setComments(list);
-
         commentaryShortUpdateResponseDto1 = userCommentaryTaskService.createPostByUser(1L, newCommentary1);
         assertEquals(commentaryShortUpdateResponseDto1.commentaryHeader(), newComment1.getCommentaryHeader(),
                 "value: comm1");

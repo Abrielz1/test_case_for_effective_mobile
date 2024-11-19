@@ -61,7 +61,8 @@ class UserServiceImplTest {
     @DisplayName("editUserAccountByAdmin")
     void When_editUserAccountByAdmin_ThenReceivedUpdatedUserWithNewEmail() {
 
-        when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+        when(userRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(user));
 
         when(userRepository.saveAndFlush(any(User.class)))
                 .thenReturn(user);
@@ -70,63 +71,67 @@ class UserServiceImplTest {
 
         UserResponseFullDto userResponseFullDto1 = userService.editUserAccountByAdmin(1L, updateUserAccountRequestDto);
 
-        assertEquals("a@m.com", userResponseFullDto1.email(), "MUST BE -> a@m.com");
-        assertEquals("123", userResponseFullDto1.password(), "MUST BE -> 123");
+        assertEquals("a@m.com", userResponseFullDto1.email(), "value: a@m.com");
+        assertEquals("123", userResponseFullDto1.password(), "value: -> 123");
     }
 
     @Test
     @DisplayName("banUserAccount")
     void When_banUserAccount_ThenReceivedUpdatedUserWithIsBannedTrue() {
 
-        when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+        when(userRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(user));
 
         when(userRepository.saveAndFlush(any(User.class)))
                 .thenReturn(user);
 
         userResponseFullDto =  userService.banUserAccount(1L);
 
-        assertEquals(true, userResponseFullDto.isBanned(), "MUST BE -> true");
+        assertEquals(true, userResponseFullDto.isBanned(), "value: -> true");
     }
 
     @Test
     @DisplayName("unbanUserAccount")
     void When_unbanUserAccount_ThenReceivedUpdatedUserWithIsBannedFalse() {
 
-        when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+        when(userRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(user));
 
         when(userRepository.saveAndFlush(any(User.class)))
                 .thenReturn(user);
 
         userResponseFullDto =  userService.unbanUserAccount(1L);
 
-        assertEquals(false, userResponseFullDto.isBanned(), "MUST BE -> false");
+        assertEquals(false, userResponseFullDto.isBanned(), "value: false");
     }
 
     @Test
     @DisplayName("deleteUserAccount")
     void When_deleteUserAccount_ThenReceivedUpdatedUserWithIsDeletedTrue() {
 
-        when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+        when(userRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(user));
 
         when(userRepository.saveAndFlush(any(User.class)))
                 .thenReturn(user);
 
-        userResponseFullDto =  userService.deleteUserAccount(1L);
+        userResponseFullDto = userService.deleteUserAccount(1L);
 
-        assertEquals(true, userResponseFullDto.isDeleted(), "MUST BE -> true");
+        assertEquals(true, userResponseFullDto.isDeleted(), "value: true");
     }
 
     @Test
     @DisplayName("undeleteUserAccount")
     void When_undeleteUserAccount_ThenReceivedUpdatedUserWithIsDeletedFalse() {
 
-        when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+        when(userRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(user));
 
         when(userRepository.saveAndFlush(any(User.class)))
                 .thenReturn(user);
 
         userResponseFullDto =  userService.undeleteUserAccount(1L);
 
-        assertEquals(false, userResponseFullDto.isDeleted(), "MUST BE -> false");
+        assertEquals(false, userResponseFullDto.isDeleted(), "value: false");
     }
 }
