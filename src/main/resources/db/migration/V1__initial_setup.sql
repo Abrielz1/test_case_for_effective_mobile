@@ -1,51 +1,3 @@
--- CREATE TABLE IF NOT EXISTS users
--- (
---     id       BIGSERIAL PRIMARY KEY,
---     email    VARCHAR(32) NOT NULL UNIQUE,
---     password VARCHAR(1024) NOT NULl,
---     username VARCHAR(128) NOT NULL UNIQUE
--- );
---
--- CREATE TABLE IF NOT EXISTS tickets
--- (
---     id        BIGSERIAL PRIMARY KEY,
---     created   TIMESTAMP,
---     message   VARCHAR(512) NOT NULL,
---     status    VARCHAR(255) NOT NULL
---         CONSTRAINT tickets_status_check
---             CHECK ((status)::TEXT = ANY
---                    ((ARRAY ['DRAFT'::CHARACTER VARYING, 'SEND'::CHARACTER VARYING, 'ACCEPTED'::CHARACTER VARYING, 'REJECTED'::CHARACTER VARYING])::TEXT[])),
---     author_id BIGINT
---         CONSTRAINT user_id
---             REFERENCES users
--- );
---
--- create table if not exists user_roles
--- (
---     user_id BIGINT       NOT NULL
---         CONSTRAINT user_id
---             REFERENCES users,
---     roles   VARCHAR(255) NOT NULL
---         CONSTRAINT user_roles_roles_check
---             CHECK ((roles)::TEXT = ANY
---                    ((ARRAY ['ROLE_USER'::CHARACTER VARYING, 'ROLE_ADMIN'::CHARACTER VARYING, 'ROLE_OPERATOR'::CHARACTER VARYING])::TEXT[])),
---     PRIMARY KEY (user_id, roles)
--- );
-
-CREATE TABLE flyway_schema_history
-(
-    installed_rank INTEGER                                   NOT NULL,
-    version        VARCHAR(50),
-    description    VARCHAR(200)                              NOT NULL,
-    type           VARCHAR(20)                               NOT NULL,
-    script         VARCHAR(1000)                             NOT NULL,
-    checksum       INTEGER,
-    installed_by   VARCHAR(100)                              NOT NULL,
-    installed_on   TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
-    execution_time INTEGER                                   NOT NULL,
-    success        BOOLEAN                                   NOT NULL,
-    CONSTRAINT flyway_schema_history_pk PRIMARY KEY (installed_rank)
-);
 
 CREATE TABLE tasks
 (
@@ -77,8 +29,6 @@ CREATE TABLE users
     password   VARCHAR(1024)                           NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
-
-CREATE INDEX flyway_schema_history_s_idx ON flyway_schema_history (success);
 
 ALTER TABLE users
     ADD CONSTRAINT uk6dotkott2kjsp8vw4d0m25fb7 UNIQUE (email);

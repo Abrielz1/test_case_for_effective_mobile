@@ -32,7 +32,7 @@ public class AdminUserController {
     private final UserService userService;
 
     @Operation(
-            summary = "Редактирование пользователя (USER) по id (Task) (ADMIN)",
+            summary = "Редактирование пользователя (USER) по id (User) (ADMIN)",
             description = "Позволяет редактирование пользователя (ADMIN)"
     )
     @PutMapping("/update/user/{userId}")
@@ -45,7 +45,7 @@ public class AdminUserController {
     }
 
     @Operation(
-            summary = "Бан/Блокировка пользователя (USER) по id (Task) (ADMIN)",
+            summary = "Бан/Блокировка пользователя (USER) по id (User) (ADMIN)",
             description = "Позволяет банить/блокировать пользователя (ADMIN)"
     )
     @PatchMapping("/ban/user/{userId}")
@@ -58,7 +58,7 @@ public class AdminUserController {
     }
 
     @Operation(
-            summary = "Разбан/Разблокировка пользователя (USER) по id (Task) (ADMIN)",
+            summary = "Разбан/Разблокировка пользователя (USER) по id (User) (ADMIN)",
             description = "Позволяет разбанить/разблокировать пользователя (ADMIN)"
     )
     @PatchMapping("/unban/user/{userId}")
@@ -71,7 +71,7 @@ public class AdminUserController {
     }
 
     @Operation(
-            summary = "Удаление пользователя (USER) по id (Task) (ADMIN)",
+            summary = "Удаление пользователя (USER) по id (User) (ADMIN)",
             description = "Позволяет удалить пользователя (ADMIN)"
     )
     @DeleteMapping("/delete/user/{userId}")
@@ -84,7 +84,7 @@ public class AdminUserController {
     }
 
     @Operation(
-            summary = "Восстановление пользователя (USER) по id (Task) (ADMIN)",
+            summary = "Восстановление пользователя (USER) по id (User) (ADMIN)",
             description = "Позволяет восстановить пользователя (ADMIN)"
     )
     @PatchMapping("/undelete/user/{userId}")
